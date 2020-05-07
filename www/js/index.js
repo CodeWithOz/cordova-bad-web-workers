@@ -28,6 +28,21 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
+        window.testWorker = async function testWorker(cloneableValue) {
+            // initialize worker
+            const worker = new Worker('./js/worker.js');
+            const workerProxy = Comlink.wrap(worker);
+            try {
+                const valueFromWorker = await workerProxy.testWorker(cloneableValue);
+                console.log('value from worker:', valueFromWorker);
+            } catch(e) {
+                console.log('worker error:', e);
+            }
+            // release resources used by worker
+            workerProxy[Comlink.releaseProxy]();
+            worker.terminate();
+        };
+        window.testWorker('test value');
     },
 
     // Update DOM on a Received Event
