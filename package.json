@@ -1,0 +1,15 @@
+{
+  "name": "com.bad.web.workers",
+  "displayName": "BadWebWorkers",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
+  "scripts": {
+    "install-plugins": "bash hooks/install-plugins.sh"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0"
+}
