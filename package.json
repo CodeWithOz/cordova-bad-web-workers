@@ -5,6 +5,7 @@
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
   "main": "index.js",
   "scripts": {
+    "install-plugins": "bash hooks/install-plugins.sh",
     "install-webview-2-5-1": "bash hooks/install-webview-2-5-1.sh",
     "install-webview-4-2-1": "bash hooks/install-webview-4-2-1.sh"
   },
