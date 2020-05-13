@@ -45,7 +45,11 @@ var app = {
                     'tilt': true,
                     'rotate': true,
                     'zoom': true
-                }
+                },
+                'camera': {
+                    'latLng': initLtLng,
+                    'zoom': 15
+                },
             });
         }
     },
