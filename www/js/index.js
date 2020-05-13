@@ -27,21 +27,27 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
-        window.testWorker = async function testWorker(cloneableValue) {
-            // initialize worker
-            const worker = new Worker('./js/worker.js');
-            const workerProxy = Comlink.wrap(worker);
-            try {
-                const valueFromWorker = await workerProxy.testWorker(cloneableValue);
-                console.log('value from worker:', valueFromWorker);
-            } catch(e) {
-                console.log('worker error:', e);
-            }
-            // release resources used by worker
-            workerProxy[Comlink.releaseProxy]();
-            worker.terminate();
-        };
-        window.testWorker('test value');
+        const div = document.getElementById("map");
+        const map = plugin.google.maps.Map.getMap(div);
+        map.on(plugin.google.maps.event.MAP_READY, initMap);
+
+        function initMap(map) {
+            // initialized in Venice, California
+            const initLtLng = new plugin.google.maps.LatLng(33.982, -118.476);
+            map.setOptions({
+                'backgroundColor': 'white',
+                'controls': {
+                    'compass': true,
+                    'indoorPicker': true
+                },
+                'gestures': {
+                    'scroll': true,
+                    'tilt': true,
+                    'rotate': true,
+                    'zoom': true
+                }
+            });
+        }
     },
 };
 
