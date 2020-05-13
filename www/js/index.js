@@ -29,6 +29,7 @@ var app = {
     onDeviceReady: function() {
         const div = document.getElementById("map");
         const map = plugin.google.maps.Map.getMap(div);
+        const initLtLng = new plugin.google.maps.LatLng(33.982, -118.476);
         let mapShown = true, markersShown = false;
 
         map.on(plugin.google.maps.event.MAP_READY, initMap);
@@ -39,9 +40,19 @@ var app = {
             map.setVisible(mapShown);
         });
 
+        document.querySelector('.marker').addEventListener('click', node => {
+            if (markersShown) {
+                map.clear();
+            } else {
+                map.addMarker({
+                    position: initLtLng,
+                });
+            }
+            markersShown = !markersShown;
+        });
+
         function initMap(map) {
             // initialized in Venice, California
-            const initLtLng = new plugin.google.maps.LatLng(33.982, -118.476);
             map.setOptions({
                 'backgroundColor': 'white',
                 'controls': {
