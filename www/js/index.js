@@ -29,7 +29,15 @@ var app = {
     onDeviceReady: function() {
         const div = document.getElementById("map");
         const map = plugin.google.maps.Map.getMap(div);
+        let mapShown = true, markersShown = false;
+
         map.on(plugin.google.maps.event.MAP_READY, initMap);
+
+        // event listeners
+        document.querySelector('.visibility').addEventListener('click', node => {
+            mapShown = !mapShown;
+            map.setVisible(mapShown);
+        });
 
         function initMap(map) {
             // initialized in Venice, California
