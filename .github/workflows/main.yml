@@ -6,9 +6,9 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [ google-maps-whitescreen ]
   pull_request:
-    branches: [ master ]
+    branches: [ google-maps-whitescreen ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -48,41 +48,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: Webview v2.5.1 APK
-        path: ./platforms/android/app/build/outputs/apk/debug/app-debug.apk
-
-  build-webview-v4:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-    # Setup SSH key
-    - uses: webfactory/ssh-agent@v0.2.0
-      with:
-        ssh-private-key: ${{ secrets.SSH_KEY }}
-
-    # Install cordova requirements
-    - name: Install cordova cli
-      run: sudo npm install -g cordova
-
-    - name: Setup Cordova
-      uses: oxr463/setup-cordova@0.0.1
-      with:
-        cordova_exec: cordova -v
-
-    # Initiate build
-    - name: Initiate build
-      run: |
-        npm run install-plugins
-        npm run install-webview-4-2-1
-        cordova platform add https://github.com/apache/cordova-android.git
-        cordova build android
-
-    # Upload APK
-    - name: Upload APK
-      uses: actions/upload-artifact@v1
-      with:
-        name: Webview v4.2.1 APK
         path: ./platforms/android/app/build/outputs/apk/debug/app-debug.apk
