@@ -39,7 +39,7 @@ var app = {
         this.receivedEvent('deviceready');
         window.testWorker = async function testWorker(cloneableValue) {
             // initialize worker
-            const worker = new Worker('./js/worker.js');
+            const worker = new Worker('http://localhost:8080/js/worker.js');
             const workerProxy = Comlink.wrap(worker);
             try {
                 const valueFromWorker = await workerProxy.testWorker(cloneableValue);
