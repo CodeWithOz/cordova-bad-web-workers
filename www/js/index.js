@@ -27,6 +27,15 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
+        (function() {
+            var _Worker = window.Worker;
+            window.Worker = function (url, opts) {
+                var blob = new Blob(["importScripts(" + JSON.stringify(url) + ")"], {
+                    type: "text/javascript"
+                });
+                return new _Worker(URL.createObjectURL(blob), opts);
+            }
+        })();
         this.receivedEvent('deviceready');
         window.testWorker = async function testWorker(cloneableValue) {
             // initialize worker
