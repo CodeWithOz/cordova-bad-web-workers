@@ -32,10 +32,9 @@
         content="default-src 'self' data: gap: filesystem: data: file://* cdvfile://*
         content://* blob: 'unsafe-inline' 'unsafe-eval' ws: wss:;
         connect-src 'self' data: blob: http://*.ngrok.io https://*.ngrok.io ws: wss:;
-        worker-src 'self' blob: http://localhost:*/ http://localhost/;
+        worker-src 'self' blob: http://localhost/;
         style-src * 'unsafe-inline';
-        script-src 'self' blob: 'unsafe-inline' 'unsafe-eval' http://localhost:*/ http://localhost/;
-        script-src-elem 'self' blob: http://localhost:*/ http://localhost/;
+        script-src 'self' blob: 'unsafe-inline' 'unsafe-eval' http://localhost/;
         img-src * data: blob: android-webview-video-poster: file://* cdvfile://*;
         media-src * cdvfile://* blob:">
         <meta name="format-detection" content="telephone=no">
