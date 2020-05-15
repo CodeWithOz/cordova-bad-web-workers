@@ -29,7 +29,7 @@ var app = {
     onDeviceReady: function() {
         (function() {
             var _Worker = window.Worker;
-            window.Worker = function (url, opts) {
+            window.inlineWorker = function (url, opts) {
                 var blob = new Blob(["importScripts(" + JSON.stringify(url) + ")"], {
                     type: "text/javascript"
                 });
@@ -37,9 +37,9 @@ var app = {
             }
         })();
         this.receivedEvent('deviceready');
-        window.testWorker = async function testWorker(cloneableValue) {
+        window.testWorker = async function testWorker(path, cloneableValue) {
             // initialize worker
-            const worker = new Worker('http://localhost:8080/js/worker.js');
+            const worker = new Worker(path);
             const workerProxy = Comlink.wrap(worker);
             try {
                 const valueFromWorker = await workerProxy.testWorker(cloneableValue);
@@ -51,7 +51,20 @@ var app = {
             workerProxy[Comlink.releaseProxy]();
             worker.terminate();
         };
-        window.testWorker('test value');
+        window.testInlineWorker = async function testInlineWorker(path, cloneableValue) {
+            // initialize worker
+            const worker = new window.inlineWorker(path);
+            const workerProxy = Comlink.wrap(worker);
+            try {
+                const valueFromWorker = await workerProxy.testWorker(cloneableValue);
+                console.log('value from worker:', valueFromWorker);
+            } catch(e) {
+                console.log('worker error:', e);
+            }
+            // release resources used by worker
+            workerProxy[Comlink.releaseProxy]();
+            worker.terminate();
+        };
     },
 
     // Update DOM on a Received Event
