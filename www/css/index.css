@@ -37,7 +37,7 @@ body {
     width:100%;
 }
 
-.map {
+#map {
     position: fixed;
     left:50%;
     top:50%;
