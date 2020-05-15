@@ -1,5 +1,5 @@
-importScripts('http://localhost:8080/js/proxy.min.js');
-importScripts('http://localhost:8080/js/comlink/comlink.global.min.js');
+importScripts('http://localhost/js/proxy.min.js');
+importScripts('http://localhost/js/comlink/comlink.global.min.js');
 
 const workerService = {
     testWorker: function(cloneableValue) {
