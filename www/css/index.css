@@ -46,6 +46,16 @@ body {
     transform: translate(-50%, -50%);
 }
 
+#overlay div {
+    position: fixed;
+    left:50%;
+    top:50%;
+    height: 80vh;
+    width: 80vw;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+}
+
 .buttons {
     position: fixed;
     top: 90vh;

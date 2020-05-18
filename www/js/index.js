@@ -70,6 +70,26 @@ var app = {
                     'zoom': 15
                 },
             });
+
+            // now add a lot of dom nodes, in batches
+            let batch = 0;
+            const frag = document.createDocumentFragment();
+            // break up the work to minimize freezing the app
+            const createAndAppend = function() {
+                setTimeout(function() {
+                    // create 1000 nodes every half second
+                    for (let i = 0; i < 1000; i++) {
+                        frag.append(document.createElement('div'));
+                    }
+                    batch++;
+                    if (batch < 12) {
+                        createAndAppend();
+                    } else {
+                        // add the nodes to the dom
+                        document.querySelector('#overlay').append(frag);
+                    }
+                }, 500);
+            };
         }
     },
 };
