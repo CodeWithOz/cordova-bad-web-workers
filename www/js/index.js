@@ -79,7 +79,15 @@ var app = {
                 setTimeout(function() {
                     // create 1000 nodes every half second
                     for (let i = 0; i < 1000; i++) {
-                        frag.append(document.createElement('div'));
+                        const node = document.createElement('div');
+                        node.style.zIndex = i;
+                        const background = [
+                            Math.floor(Math.random() * 255),
+                            Math.floor(Math.random() * 255),
+                            Math.floor(Math.random() * 255)
+                        ];
+                        node.style.backgroundColor = `rgba(${background[0]},${background[1]},${background[2]},${Math.random() * 0.1})`;
+                        frag.append(node);
                     }
                     batch++;
                     if (batch < 12) {
@@ -90,6 +98,7 @@ var app = {
                     }
                 }, 500);
             };
+            createAndAppend();
         }
     },
 };
