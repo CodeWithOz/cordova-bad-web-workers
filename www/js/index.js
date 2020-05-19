@@ -56,6 +56,7 @@ var app = {
                 }
                 map.addMarker({
                     position: latLngPair[lastMarker],
+                    icon: './img/profile_round_default.png',
                 }, function (marker) {
                     map.animateCamera({
                         target: latLngPair[lastMarker],
