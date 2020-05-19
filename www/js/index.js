@@ -29,8 +29,11 @@ var app = {
     onDeviceReady: function() {
         const div = document.getElementById("map");
         const map = plugin.google.maps.Map.getMap(div);
-        const initLtLng = new plugin.google.maps.LatLng(33.982, -118.476);
-        let mapShown = true, markersShown = false;
+        const latLngPair = [
+            new plugin.google.maps.LatLng(33.982, -118.476),
+            new plugin.google.maps.LatLng(51.1784, -115.5708)
+        ];
+        let mapShown = true, markersShown = false, lastMarker = 0;
 
         map.on(plugin.google.maps.event.MAP_READY, initMap);
 
@@ -44,8 +47,21 @@ var app = {
             if (markersShown) {
                 map.clear();
             } else {
+                if (lastMarker === 0) {
+                    // currently at location 0, add marker at location 1
+                    lastMarker = 1;
+                } else {
+                    // currently at location 1, add marker at location 0
+                    lastMarker = 0;
+                }
                 map.addMarker({
-                    position: initLtLng,
+                    position: latLngPair[lastMarker],
+                }, function (marker) {
+                    map.animateCamera({
+                        target: latLngPair[lastMarker],
+                        zoom: 15,
+                        duration: 1000,
+                    });
                 });
             }
             markersShown = !markersShown;
@@ -66,7 +82,7 @@ var app = {
                     'zoom': true
                 },
                 'camera': {
-                    'latLng': initLtLng,
+                    'latLng': latLngPair[0],
                     'zoom': 15
                 },
             });
