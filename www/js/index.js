@@ -115,7 +115,7 @@ var app = {
                     }
                 }, 500);
             };
-            createAndAppend();
+            // createAndAppend();
         }
     },
 };
