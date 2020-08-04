@@ -20,9 +20,19 @@
         <allow-intent href="market:*" />
         <preference name="android-minSdkVersion" value="22" />
         <preference name="android-targetSdkVersion" value="28" />
+        <preference name="SplashScreen" value="screen" />
+        <splash density="port-hdpi" src="res/screen/android/hdpi.png" />
+        <splash density="port-mdpi" src="res/screen/android/mdpi.png" />
+        <splash density="port-xhdpi" src="res/screen/android/xhdpi.png" />
+        <splash density="port-xxhdpi" src="res/screen/android/xxhdpi.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="FadeSplashScreen" value="true" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
 </widget>
