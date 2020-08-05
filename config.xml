@@ -21,10 +21,10 @@
         <preference name="android-minSdkVersion" value="22" />
         <preference name="android-targetSdkVersion" value="28" />
         <preference name="SplashScreen" value="screen" />
-        <splash density="port-hdpi" src="res/screen/android/hdpi.png" />
-        <splash density="port-mdpi" src="res/screen/android/mdpi.png" />
-        <splash density="port-xhdpi" src="res/screen/android/xhdpi.png" />
-        <splash density="port-xxhdpi" src="res/screen/android/xxhdpi.png" />
+        <splash density="port-hdpi" src="res/screen/android/hdpi.jpg" />
+        <splash density="port-mdpi" src="res/screen/android/mdpi.jpg" />
+        <splash density="port-xhdpi" src="res/screen/android/xhdpi.jpg" />
+        <splash density="port-xxhdpi" src="res/screen/android/xxhdpi.jpg" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
