@@ -92,6 +92,7 @@ var app = {
             let batch = 0;
             const frag = document.createDocumentFragment();
             // break up the work to minimize freezing the app
+            const shadowContainer = document.querySelector('#overlay').attachShadow({ mode: 'open' });
             const createAndAppend = function() {
                 setTimeout(function() {
                     // create 1000 nodes every half second
@@ -110,8 +111,8 @@ var app = {
                     if (batch < 12) {
                         createAndAppend();
                     } else {
-                        // add the nodes to the dom
-                        document.querySelector('#overlay').append(frag);
+                        // add the nodes to the shadow dom
+                        shadowContainer.append(frag);
                     }
                 }, 500);
             };
