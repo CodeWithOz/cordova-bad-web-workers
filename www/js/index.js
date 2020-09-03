@@ -37,34 +37,51 @@ var app = {
             }
         })();
         this.receivedEvent('deviceready');
-        window.testWorker = async function testWorker(path, cloneableValue) {
-            // initialize worker
-            const worker = new Worker(path);
-            const workerProxy = Comlink.wrap(worker);
-            try {
-                const valueFromWorker = await workerProxy.testWorker(cloneableValue);
-                console.log('value from worker:', valueFromWorker);
-            } catch(e) {
-                console.log('worker error:', e);
-            }
-            // release resources used by worker
-            workerProxy[Comlink.releaseProxy]();
-            worker.terminate();
+        let bgGeo = window.BackgroundGeolocation;
+        let geoDebugOptions = {};
+
+        let DEBUG_BUILD = true;
+        if (DEBUG_BUILD) {
+            geoDebugOptions = {
+                reset: true, // to ensure our debugging and log level config changes are picked up
+                debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
+                logLevel: bgGeo.LOG_LEVEL_VERBOSE,
+            };
+        } else {
+            geoDebugOptions = {
+                reset: true,
+                debug: false,
+            };
+        }
+
+        const initGeoOptions = {
+            // Geolocation config
+            desiredAccuracy: 0,
+            stationaryRadius: 50,
+            distanceFilter: 50,
+            disableElasticity: false, // <-- [iOS] Default is 'false'.  Set true to disable speed-based distanceFilter elasticity
+            locationUpdateInterval: 5000,
+            minimumActivityRecognitionConfidence: 80, // 0-100%.  Minimum activity-confidence for a state-change
+            fastestLocationUpdateInterval: 5000,
+            activityRecognitionInterval: 10000,
+            stopTimeout: 0,
+            stopOnTerminate: false,
+            startOnBoot: true,
+            locationAuthorizationRequest: 'Any',
+            // Default is "Always".  This will force a prompt and take user to device settings for iOS,
+            // if the current location settings do not match.  Options: "Always", "WhenInUse", or "Any"
+            // Application config
+            url: 'https://fake.com', // <-- not the actual URL
+            method: 'POST',
+            batchSync: false, // <-- [Default: false] Set true to sync locations to server in a single HTTP request.
+            autoSync: true, // <-- [Default: true] Set true to sync each location to server as it arrives.
+            // Debug config
+            ...geoDebugOptions,
         };
-        window.testInlineWorker = async function testInlineWorker(path, cloneableValue) {
-            // initialize worker
-            const worker = new window.inlineWorker(path);
-            const workerProxy = Comlink.wrap(worker);
-            try {
-                const valueFromWorker = await workerProxy.testWorker(cloneableValue);
-                console.log('value from worker:', valueFromWorker);
-            } catch(e) {
-                console.log('worker error:', e);
-            }
-            // release resources used by worker
-            workerProxy[Comlink.releaseProxy]();
-            worker.terminate();
-        };
+
+        bgGeo.ready(initGeoOptions, async function (state) {
+            console.log('bg-geo ready');
+        });
     },
 
     // Update DOM on a Received Event
