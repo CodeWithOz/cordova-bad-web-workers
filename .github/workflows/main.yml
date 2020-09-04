@@ -40,7 +40,7 @@ jobs:
       run: |
         npm run install-plugins
         npm run install-webview-2-5-1
-        cordova platform add https://github.com/apache/cordova-android.git
+        cordova platform add android@latest
         cordova build android
 
     # Upload APK
@@ -77,7 +77,7 @@ jobs:
       run: |
         npm run install-plugins
         npm run install-webview-4-2-1
-        cordova platform add https://github.com/apache/cordova-android.git
+        cordova platform add android@latest
         cordova build android
 
     # Upload APK
