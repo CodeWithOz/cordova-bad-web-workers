@@ -35,6 +35,10 @@ jobs:
       with:
         cordova_exec: cordova -v
 
+    # Initiate NDK
+    - name: Initiate NDK
+      run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;21.0.6113669" --sdk_root=${ANDROID_SDK_ROOT}
+
     # Initiate build
     - name: Initiate build
       run: |
@@ -71,6 +75,10 @@ jobs:
       uses: oxr463/setup-cordova@0.0.1
       with:
         cordova_exec: cordova -v
+
+    # Initiate NDK
+    - name: Initiate NDK
+      run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;21.0.6113669" --sdk_root=${ANDROID_SDK_ROOT}
 
     # Initiate build
     - name: Initiate build
