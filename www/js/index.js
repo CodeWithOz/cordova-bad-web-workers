@@ -27,44 +27,32 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
-        (function() {
-            var _Worker = window.Worker;
-            window.inlineWorker = function (url, opts) {
-                var blob = new Blob(["importScripts(" + JSON.stringify(url) + ")"], {
-                    type: "text/javascript"
-                });
-                return new _Worker(URL.createObjectURL(blob), opts);
-            }
-        })();
         this.receivedEvent('deviceready');
-        window.testWorker = async function testWorker(path, cloneableValue) {
-            // initialize worker
-            const worker = new Worker(path);
-            const workerProxy = Comlink.wrap(worker);
-            try {
-                const valueFromWorker = await workerProxy.testWorker(cloneableValue);
-                console.log('value from worker:', valueFromWorker);
-            } catch(e) {
-                console.log('worker error:', e);
+        let myPane;
+        document.querySelector('.init-bottom-sheet').addEventListener('click', event => {
+            initPane(undefined, true);
+        });
+        document.querySelector('.destroy-bottom-sheet').addEventListener('click', event => {
+            if (myPane) {
+                myPane.destroy({ animate: true });
+                myPane = null;
             }
-            // release resources used by worker
-            workerProxy[Comlink.releaseProxy]();
-            worker.terminate();
-        };
-        window.testInlineWorker = async function testInlineWorker(path, cloneableValue) {
-            // initialize worker
-            const worker = new window.inlineWorker(path);
-            const workerProxy = Comlink.wrap(worker);
-            try {
-                const valueFromWorker = await workerProxy.testWorker(cloneableValue);
-                console.log('value from worker:', valueFromWorker);
-            } catch(e) {
-                console.log('worker error:', e);
+        });
+
+        // initialize cupertino-pane bottom sheet
+        function initPane(config = {
+            onDidDismiss() {
+                if (myPane) {
+                    myPane.destroy({ animate: true });
+                    myPane = null;
+                }
             }
-            // release resources used by worker
-            workerProxy[Comlink.releaseProxy]();
-            worker.terminate();
-        };
+        }, shouldPresent) {
+            myPane = new CupertinoPane('.cupertino-pane', config);
+            if (shouldPresent) {
+                myPane.present({ animate: true });
+            }
+        }
     },
 
     // Update DOM on a Received Event
@@ -81,3 +69,25 @@ var app = {
 };
 
 app.initialize();
+
+let count = 0;
+function insertPane() {
+    const getLis = () => {
+        let html = '';
+        for (let i = 0; i < 30; i++) {
+            html += `<li><span>Text ${(count * 10) + i}</span></li>`;
+        }
+        return html;
+    };
+    const paneHTML = `
+    <div class="cupertino-pane-${count}">
+        <h1>Header</h1>
+        <div class="content">
+            ${getLis()}
+        </div>
+    </div>`;
+    document.body.insertAdjacentHTML(paneHTML);
+    const newPane = new CupertinoPane(`.cupertino-pane-${count}`);
+    myPane.present({ animate: true });
+    count++;
+}

@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-* {
+ * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
@@ -104,4 +104,26 @@ h1 {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
+}
+
+.toggle {
+    background: red;
+    width: 150px;
+    font-size: 1.2em;
+    margin: 0.2em;
+    padding: 0.5em;
+}
+
+.cupertino-pane li {
+    padding: 1em 0;
+}
+
+.cupertino-pane-wrapper .cupertino-pane {
+    overflow-y: hidden !important;
+}
+
+.cupertino-pane .content {
+    height: 70vh;
+    overflow-y: scroll;
+    background-color: aquamarine;
 }
