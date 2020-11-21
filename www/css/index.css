@@ -125,5 +125,8 @@ h1 {
 .cupertino-pane .content {
     height: 70vh;
     overflow-y: scroll;
+}
+
+.cupertino-pane-wrapper .content {
     background-color: aquamarine;
 }
