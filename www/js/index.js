@@ -46,6 +46,10 @@ var app = {
                     myPane.destroy({ animate: true });
                     myPane = null;
                 }
+                document.querySelector('button.switch-tabs').removeEventListener('click', switchTabs);
+            },
+            onDidPresent() {
+                document.querySelector('button.switch-tabs').addEventListener('click', switchTabs);
             }
         }, shouldPresent) {
             myPane = new CupertinoPane('.cupertino-pane', config);
@@ -90,4 +94,26 @@ function insertPane() {
     const newPane = new CupertinoPane(`.cupertino-pane-${count}`);
     myPane.present({ animate: true });
     count++;
+}
+
+function switchTabs() {
+    const activeTab = document.querySelector('.scroller.active');
+    if (activeTab) {
+        if (activeTab.classList.contains('second')) {
+            // switch to the third
+            requestAnimationFrame(() => {
+                activeTab.classList.remove('active');
+                document.querySelector('.scroller.third').classList.add('active');
+            });
+        } else if (activeTab.classList.contains('third')) {
+            // switch to the first
+            requestAnimationFrame(() => {
+                activeTab.classList.remove('active');
+            });
+        }
+    } else {
+        // the first tab is focused
+        // switch to the second
+        document.querySelector('.scroller.second').classList.add('active');
+    }
 }
