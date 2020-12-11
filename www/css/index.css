@@ -158,3 +158,15 @@ h1 {
 .cupertino-pane-wrapper .scroller {
     width: calc(100% / 3);
 }
+
+.cupertino-pane-wrapper button.switch-tabs {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: red;
+    top: 10px;
+    left: 10px;
+    border-radius: 1000px;
+    padding: 1em;
+    z-index: 12;
+}
