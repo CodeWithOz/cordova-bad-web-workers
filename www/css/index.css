@@ -115,14 +115,14 @@ h1 {
 }
 
 .cupertino-pane li {
-    padding: 1em 0;
+    padding: 3em 0;
 }
 
 .cupertino-pane-wrapper .cupertino-pane {
     overflow-y: hidden !important;
 }
 
-.cupertino-pane .content {
+.cupertino-pane .scroller {
     height: 70vh;
     overflow-y: scroll;
 }
