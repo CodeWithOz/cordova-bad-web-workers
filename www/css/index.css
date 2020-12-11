@@ -137,23 +137,22 @@ h1 {
 
 .cupertino-pane-wrapper .scroller {
     width: calc(100% / 3);
-}
-
-.cupertino-pane-wrapper .scroller {
     transition: transform ease 0.5s;
     position: relative;
     left: 0;
     right: 0;
     opacity: 1;
-    background: white;
+    background: lightblue;
 }
 
 .cupertino-pane-wrapper .scroller.second.active {
     transform: translateX(-100%);
+    background: greenyellow;
 }
 
 .cupertino-pane-wrapper .scroller.third.active {
     transform: translateX(-200%);
+    background: purple;
 }
 
 .cupertino-pane-wrapper .scroller {
