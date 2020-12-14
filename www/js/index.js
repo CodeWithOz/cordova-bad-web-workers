@@ -52,6 +52,14 @@ var app = {
                 document.querySelector('button.switch-tabs').addEventListener('click', switchTabs);
             },
             topperOverflow: false,
+            onTransitionEnd() {
+                if (myPane) {
+                    const currentBreakPoint = myPane.currentBreak();
+                    if (currentBreakPoint === 'top') {
+                        requestAnimationFrame(() => document.querySelectorAll('.cupertino-pane .scroller').forEach(node => node.style.overflowY = 'auto'));
+                    }
+                }
+            },
         }, shouldPresent) {
             myPane = new CupertinoPane('.cupertino-pane', config);
             if (shouldPresent) {
