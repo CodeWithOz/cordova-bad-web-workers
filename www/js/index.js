@@ -60,6 +60,8 @@ var app = {
                     const currentBreakPoint = myPane.currentBreak();
                     if (currentBreakPoint === 'top') {
                         requestAnimationFrame(() => document.querySelectorAll('.cupertino-pane .scroller').forEach(node => node.style.overflowY = 'auto'));
+                    } else {
+                        requestAnimationFrame(() => document.querySelectorAll('.cupertino-pane .scroller').forEach(node => node.style.overflowY = ''));
                     }
                     const currentTransformY = myPane.getPanelTransformY();
                     // update the highest transformY if necessary
