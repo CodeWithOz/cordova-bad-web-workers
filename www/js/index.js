@@ -28,7 +28,9 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
-        let myPane;
+        let myPane,
+            // initialize transformY variable as the lowest point in the viewport
+            highestTransformY = window.innerHeight;
         document.querySelector('.init-bottom-sheet').addEventListener('click', event => {
             initPane(undefined, true);
         });
@@ -59,6 +61,11 @@ var app = {
                     const currentBreakPoint = myPane.currentBreak();
                     if (currentBreakPoint === 'top') {
                         requestAnimationFrame(() => document.querySelectorAll('.cupertino-pane .scroller').forEach(node => node.style.overflowY = 'auto'));
+                    }
+                    const currentTransformY = myPane.getPanelTransformY();
+                    // update the highest transformY if necessary
+                    if (currentTransformY < highestTransformY) {
+                        highestTransformY = currentTransformY;
                     }
                 }
             },
