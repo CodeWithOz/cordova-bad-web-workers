@@ -118,13 +118,9 @@ h1 {
     padding: 3em 0;
 }
 
-.cupertino-pane-wrapper .cupertino-pane {
-    overflow-y: hidden !important;
-}
-
 .cupertino-pane .scroller {
     height: 70vh;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 .cupertino-pane-wrapper .content {
