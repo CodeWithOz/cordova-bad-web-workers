@@ -50,7 +50,8 @@ var app = {
             },
             onDidPresent() {
                 document.querySelector('button.switch-tabs').addEventListener('click', switchTabs);
-            }
+            },
+            topperOverflow: false,
         }, shouldPresent) {
             myPane = new CupertinoPane('.cupertino-pane', config);
             if (shouldPresent) {
