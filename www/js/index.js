@@ -47,9 +47,11 @@ var app = {
                     myPane = null;
                 }
                 document.querySelector('button.switch-tabs').removeEventListener('click', switchTabs);
+                document.querySelectorAll('.cupertino-pane .scroller').forEach(node => node.removeEventListener('scroll', toggleDrag));
             },
             onDidPresent() {
                 document.querySelector('button.switch-tabs').addEventListener('click', switchTabs);
+                document.querySelectorAll('.cupertino-pane .scroller').forEach(node => node.addEventListener('scroll', toggleDrag));
             },
             topperOverflow: false,
             onTransitionEnd() {
@@ -64,6 +66,19 @@ var app = {
             myPane = new CupertinoPane('.cupertino-pane', config);
             if (shouldPresent) {
                 myPane.present({ animate: true });
+            }
+        }
+
+        function toggleDrag(e) {
+            const scrollTop = e.target.scrollTop;
+            if (scrollTop > 0) {
+                if (myPane) {
+                    myPane.disableDrag();
+                }
+            } else {
+                if (myPane) {
+                    myPane.enableDrag();
+                }
             }
         }
     },
