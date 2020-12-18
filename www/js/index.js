@@ -28,6 +28,8 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         let myPane;
+        let topHeight = 750;
+        let scrollTop;
         // initialize transformY variable as the lowest point in the viewport
         let highestTransformY = window.innerHeight;
         document.querySelector('.init-bottom-sheet').addEventListener('click', event => {
@@ -42,6 +44,23 @@ var app = {
 
         // initialize cupertino-pane bottom sheet
         function initPane(config = {
+            breaks: {
+                top: {
+                    enabled: true,
+                    height: topHeight
+                }
+            },
+            onDrag() {
+                if (scrollTop > 0) {
+                    myPane.disableDrag();
+                } else {
+                    myPane.enableDrag();
+                }
+
+                if (myPane.getPanelTransformY() > window.innerHeight - topHeight) {
+                    document.querySelectorAll('.cupertino-pane .scroller').forEach(node => node.style.overflowY = 'hidden')
+                }
+            },
             onDidDismiss() {
                 if (myPane) {
                     myPane.destroy({ animate: true });
@@ -60,8 +79,6 @@ var app = {
                     const currentBreakPoint = myPane.currentBreak();
                     if (currentBreakPoint === 'top') {
                         requestAnimationFrame(() => document.querySelectorAll('.cupertino-pane .scroller').forEach(node => node.style.overflowY = 'auto'));
-                    } else {
-                        requestAnimationFrame(() => document.querySelectorAll('.cupertino-pane .scroller').forEach(node => node.style.overflowY = ''));
                     }
                     const currentTransformY = myPane.getPanelTransformY();
                     // update the highest transformY if necessary
@@ -82,17 +99,20 @@ var app = {
             if (activeTab) {
                 if (activeTab.classList.contains('second')) {
                     // switch to the third
+                    scrollTop = 0;
                     requestAnimationFrame(() => {
                         activeTab.classList.remove('active');
                         document.querySelector('.scroller.third').classList.add('active');
                     });
                 } else if (activeTab.classList.contains('third')) {
+                    scrollTop = 0;
                     // switch to the first
                     requestAnimationFrame(() => {
                         activeTab.classList.remove('active');
                     });
                 }
             } else {
+                scrollTop = 0;
                 // the first tab is focused
                 // switch to the second
                 document.querySelector('.scroller.second').classList.add('active');
@@ -100,7 +120,7 @@ var app = {
         }
 
         function toggleDrag(e) {
-            const scrollTop = e.target.scrollTop;
+            scrollTop = e.target.scrollTop;
             if (scrollTop > 0) {
                 if (myPane) {
                     myPane.disableDrag();
