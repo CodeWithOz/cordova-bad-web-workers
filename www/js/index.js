@@ -41,6 +41,12 @@ var app = {
                 myPane = null;
             }
         });
+        document.querySelector('.import-module').addEventListener('click', event => {
+            import('./module').then(module => {
+                alert(`exported func result: ${module.testFunc()}`);
+                alert(`exported const: ${module.TEST_CONST}`);
+            }).catch(err => alert(`error importing script: ${JSON.stringify(err)}`));
+        });
 
         // initialize cupertino-pane bottom sheet
         function initPane(config = {
