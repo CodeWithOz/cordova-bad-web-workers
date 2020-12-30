@@ -1,0 +1,15 @@
+{
+    "field1": "value1",
+    "field2": "value2",
+    "nestedfield1": {
+        "innerfield1": "innervalue1"
+    },
+    "nestedarray1": [
+        {
+            "arrayobjfield1": "arrayobjvalue1"
+        },
+        {
+            "arrayobjfield2": "arrayobjvalue2"
+        }
+    ]
+}
