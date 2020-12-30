@@ -42,10 +42,10 @@ var app = {
             }
         });
         document.querySelector('.import-module').addEventListener('click', event => {
-            import('./module').then(module => {
-                alert(`exported func result: ${module.testFunc()}`);
-                alert(`exported const: ${module.TEST_CONST}`);
-            }).catch(err => alert(`error importing script: ${JSON.stringify(err)}`));
+            import('../json/test.json').then(module => {
+                console.log('json details:', module);
+                alert(`json import successful, check the console!`);
+            }).catch(err => alert(`error importing json: ${JSON.stringify(err)}`));
         });
 
         // initialize cupertino-pane bottom sheet
