@@ -73,7 +73,7 @@ jobs:
       # 0.0.2
       uses: oxr463/setup-cordova@cfd9f1c03c813dddb8a934257f159147bb15bcd4
       with:
-        cordova_exec: cordova -v
+        exec: cordova -v
 
     - name: Install NDK
       run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;21.0.6113669" --sdk_root=${ANDROID_SDK_ROOT}
@@ -83,7 +83,7 @@ jobs:
       run: |
         npm run install-plugins
         npm run install-webview-4-2-1
-        cordova platform add android
+        cordova platform add android@9.0.0
         cordova build android
 
     # Upload APK
