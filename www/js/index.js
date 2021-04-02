@@ -32,65 +32,134 @@ var app = {
         let scrollTop;
         // initialize transformY variable as the lowest point in the viewport
         let highestTransformY = window.innerHeight;
-        document.querySelector('.init-bottom-sheet').addEventListener('click', event => {
-            initPane(undefined, true);
-        });
-        document.querySelector('.destroy-bottom-sheet').addEventListener('click', event => {
-            if (myPane) {
-                myPane.destroy({ animate: true });
-                myPane = null;
-            }
-        });
-
-        // initialize cupertino-pane bottom sheet
-        function initPane(config = {
-            breaks: {
-                top: {
-                    enabled: true,
-                    height: topHeight
-                }
-            },
-            onDrag() {
-                if (scrollTop > 0) {
-                    myPane.disableDrag();
-                } else {
-                    myPane.enableDrag();
-                }
-
-                if (myPane.getPanelTransformY() > window.innerHeight - topHeight) {
-                    document.querySelectorAll('.cupertino-pane .scroller').forEach(node => node.style.overflowY = 'hidden')
-                }
-            },
-            onDidDismiss() {
+        document
+            .querySelector('.init-bottom-sheet')
+            .addEventListener('click', event => {
+                initPane(undefined, true);
+            });
+        document
+            .querySelector('.init-nested-bottom-sheet')
+            .addEventListener('click', event => {
+                    let pane;
+                    initNestedPane(pane);
+                });
+        document
+            .querySelector('.destroy-bottom-sheet')
+            .addEventListener('click', event => {
                 if (myPane) {
                     myPane.destroy({ animate: true });
                     myPane = null;
                 }
-                document.querySelector('button.switch-tabs').removeEventListener('click', switchTabs);
-                document.querySelectorAll('.cupertino-pane .scroller').forEach(node => node.removeEventListener('scroll', toggleDrag));
-            },
-            onDidPresent() {
-                document.querySelector('button.switch-tabs').addEventListener('click', switchTabs);
-                document.querySelectorAll('.cupertino-pane .scroller').forEach(node => node.addEventListener('scroll', toggleDrag));
-            },
-            topperOverflow: false,
-            onTransitionEnd() {
-                if (myPane) {
-                    const currentBreakPoint = myPane.currentBreak();
-                    if (currentBreakPoint === 'top') {
-                        requestAnimationFrame(() => document.querySelectorAll('.cupertino-pane .scroller').forEach(node => node.style.overflowY = 'auto'));
+            });
+
+        // initialize cupertino-pane bottom sheet
+        function initPane(
+            config = {
+                backdrop: true,
+                bottomClose: true,
+                fastSwipeClose: true,
+                fastSwipeSensivity: 30,
+                dragBy: ['.pane', '.backdrop'],
+                handleKeyboard: false,
+                breaks: {
+                    top: {
+                        enabled: true,
+                        height: topHeight,
+                    },
+                },
+                onDrag() {
+                    if (scrollTop > 0) {
+                        myPane.disableDrag();
+                    } else {
+                        myPane.enableDrag();
                     }
-                    const currentTransformY = myPane.getPanelTransformY();
-                    // update the highest transformY if necessary
-                    if (currentTransformY < highestTransformY) {
-                        highestTransformY = currentTransformY;
+
+                    if (
+                        myPane.getPanelTransformY() >
+                            window.innerHeight - topHeight
+                    ) {
+                        document
+                            .querySelectorAll('.cupertino-pane .scroller')
+                            .forEach(node => ((node.style.overflowY = 'hidden')));
                     }
-                }
+                },
+                onDidDismiss() {
+                    if (myPane) {
+                        myPane.destroy({ animate: true });
+                        myPane = null;
+                    }
+                    document
+                        .querySelector('button.switch-tabs')
+                        .removeEventListener('click', switchTabs);
+                    document
+                        .querySelectorAll('.cupertino-pane .scroller')
+                        .forEach(node =>
+                            node.removeEventListener('scroll', toggleDrag)
+                        );
+                },
+                onDidPresent() {
+                    document
+                        .querySelector('button.switch-tabs')
+                        .addEventListener('click', switchTabs);
+                    document
+                        .querySelectorAll('.cupertino-pane .scroller')
+                        .forEach(node =>
+                            node.addEventListener('scroll', toggleDrag)
+                        );
+                },
+                topperOverflow: false,
+                onTransitionEnd() {
+                    if (myPane) {
+                        const currentBreakPoint = myPane.currentBreak();
+                        if (currentBreakPoint === 'top') {
+                            requestAnimationFrame(() =>
+                                document
+                                    .querySelectorAll(
+                                        '.cupertino-pane .scroller'
+                                    )
+                                    .forEach(
+                                        node => ((node.style.overflowY = 'auto'))
+                                    )
+                            );
+                        }
+                        const currentTransformY = myPane.getPanelTransformY();
+                        // update the highest transformY if necessary
+                        if (currentTransformY < highestTransformY) {
+                            highestTransformY = currentTransformY;
+                        }
+                    }
+                },
             },
-        }, shouldPresent) {
+            shouldPresent
+        ) {
             myPane = new CupertinoPane('.cupertino-pane', config);
             if (shouldPresent) {
                 myPane.present({ animate: true });
+            }
+        }
+
+        // initialize a nested cupertino-pane bottom sheet
+        function initNestedPane(
+            pane,
+            config = {
+                backdrop: true,
+                bottomClose: true,
+                fastSwipeClose: true,
+                fastSwipeSensivity: 30,
+                dragBy: ['.pane', '.backdrop'],
+                handleKeyboard: false,
+                onDidDismiss() {
+                    if (pane) {
+                        pane.destroy({ animate: true });
+                        pane = null;
+                    }
+                },
+            },
+            shouldPresent
+        ) {
+            pane = new CupertinoPane('.cupertino-pane', config);
+            if (shouldPresent) {
+                pane.present({ animate: true });
             }
         }
 
@@ -102,7 +171,9 @@ var app = {
                     scrollTop = 0;
                     requestAnimationFrame(() => {
                         activeTab.classList.remove('active');
-                        document.querySelector('.scroller.third').classList.add('active');
+                        document
+                            .querySelector('.scroller.third')
+                            .classList.add('active');
                     });
                 } else if (activeTab.classList.contains('third')) {
                     scrollTop = 0;
@@ -115,7 +186,9 @@ var app = {
                 scrollTop = 0;
                 // the first tab is focused
                 // switch to the second
-                document.querySelector('.scroller.second').classList.add('active');
+                document
+                    .querySelector('.scroller.second')
+                    .classList.add('active');
             }
         }
 
