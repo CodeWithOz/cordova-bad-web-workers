@@ -40,8 +40,9 @@ var app = {
         document
             .querySelector('.init-nested-bottom-sheet')
             .addEventListener('click', event => {
-                    let pane;
-                    initNestedPane(pane);
+                    let pane,
+                        selector = `nested-cupertino-pane-${uuidGen()}`;
+                    initNestedPane(pane, selector);
                 });
         document
             .querySelector('.destroy-bottom-sheet')
@@ -141,6 +142,7 @@ var app = {
         // initialize a nested cupertino-pane bottom sheet
         function initNestedPane(
             pane,
+            selector,
             config = {
                 backdrop: true,
                 bottomClose: true,
@@ -153,14 +155,40 @@ var app = {
                         pane.destroy({ animate: true });
                         pane = null;
                     }
+                    requestAnimationFrame(() => {
+                        document
+                            .querySelectorAll(`.${selector}`)
+                            .forEach(node => node.parentNode.removeChild(node));
+                    });
                 },
             },
             shouldPresent
         ) {
-            pane = new CupertinoPane('.cupertino-pane', config);
-            if (shouldPresent) {
-                pane.present({ animate: true });
-            }
+            requestAnimationFrame(() => {
+                document.body.insertAdjacentHTML(
+                    'beforeend',
+                    `<div class="${selector}">
+                        <h1>Header</h1>
+                        <div class="content">
+                            <button type="button" class="toggle init-nested-bottom-sheet">Init nested pane</button>
+                            <li><span>Text 1</span></li>
+                            <li><span>Text 2</span></li>
+                            <li><span>Text 3</span></li>
+                            <li><span>Text 4</span></li>
+                            <li><span>Text 5</span></li>
+                            <li><span>Text 6</span></li>
+                            <li><span>Text 7</span></li>
+                            <li><span>Text 8</span></li>
+                            <li><span>Text 9</span></li>
+                            <li><span>Text 10</span></li>
+                        </div>
+                    </div>`
+                );
+                pane = new CupertinoPane(`.${selector}`, config);
+                if (shouldPresent) {
+                    pane.present({ animate: true });
+                }
+            });
         }
 
         function switchTabs() {
@@ -208,3 +236,9 @@ var app = {
 };
 
 app.initialize();
+
+function uuidGen(a) {
+    return a
+        ? (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
+        : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuidGen);
+}
