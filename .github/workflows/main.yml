@@ -57,9 +57,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      # v2.3.4
+    - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
     # Setup SSH key
-    - uses: webfactory/ssh-agent@v0.4.1
+      # v0.5.0
+    - uses: webfactory/ssh-agent@6b2f2c5354ff41f1edbbf7a17ea9b6178c89be9f
       with:
         ssh-private-key: ${{ secrets.SSH_KEY }}
 
@@ -68,21 +70,26 @@ jobs:
       run: sudo npm install -g cordova
 
     - name: Setup Cordova
-      uses: oxr463/setup-cordova@0.0.1
+      # 0.0.2
+      uses: oxr463/setup-cordova@cfd9f1c03c813dddb8a934257f159147bb15bcd4
       with:
         cordova_exec: cordova -v
+
+    - name: Install NDK
+      run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;21.0.6113669" --sdk_root=${ANDROID_SDK_ROOT}
 
     # Initiate build
     - name: Initiate build
       run: |
         npm run install-plugins
         npm run install-webview-4-2-1
-        cordova platform add https://github.com/apache/cordova-android.git
+        cordova platform add android
         cordova build android
 
     # Upload APK
     - name: Upload APK
-      uses: actions/upload-artifact@v1
+      # v2.2.2
+      uses: actions/upload-artifact@e448a9b857ee2131e752b06002bf0e093c65e571
       with:
         name: Webview v4.2.1 APK
         path: ./platforms/android/app/build/outputs/apk/debug/app-debug.apk
