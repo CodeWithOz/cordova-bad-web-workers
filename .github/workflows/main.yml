@@ -78,11 +78,11 @@ jobs:
     - name: Install NDK
       run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;21.0.6113669" --sdk_root=${ANDROID_SDK_ROOT}
 
-    - name: Manage JDK
-      run: |
-        echo $PATH
-        echo $JAVA_HOME
-        echo $ANDROID_SDK_ROOT
+    - name: Install correct JDK
+      # 1.1.1
+      uses: AdoptOpenJDK/install-jdk@2f15d3f82051aa50984186fc1184467d0d9f87d0
+      with:
+        version: '1.8'
 
     # Initiate build
     - name: Initiate build
