@@ -150,6 +150,17 @@ var app = {
                 fastSwipeSensivity: 30,
                 dragBy: ['.pane', '.backdrop'],
                 handleKeyboard: false,
+                onDidPresent() {
+                    if (pane) {
+                        pane.selector
+                            .querySelector('.init-nested-bottom-sheet')
+                            .addEventListener('click', event => {
+                                let pane,
+                                    selector = `nested-cupertino-pane-${uuidGen()}`;
+                                initNestedPane(pane, selector);
+                            });
+                    }
+                },
                 onDidDismiss() {
                     if (pane) {
                         pane.destroy({ animate: true });
