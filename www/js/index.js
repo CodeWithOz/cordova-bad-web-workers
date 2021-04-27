@@ -38,13 +38,6 @@ var app = {
                 initPane(undefined, true);
             });
         document
-            .querySelector('.init-nested-bottom-sheet')
-            .addEventListener('click', event => {
-                    let pane,
-                        selector = `nested-cupertino-pane-${uuidGen()}`;
-                    initNestedPane(pane, selector);
-                });
-        document
             .querySelector('.destroy-bottom-sheet')
             .addEventListener('click', event => {
                 if (myPane) {
@@ -107,6 +100,13 @@ var app = {
                         .forEach(node =>
                             node.addEventListener('scroll', toggleDrag)
                         );
+                    myPane.selector
+                        .querySelector('.init-nested-bottom-sheet')
+                        .addEventListener('click', event => {
+                            let pane,
+                                selector = `nested-cupertino-pane-${uuidGen()}`;
+                            initNestedPane(pane, selector, undefined, true);
+                        });
                 },
                 topperOverflow: false,
                 onTransitionEnd() {
@@ -157,7 +157,7 @@ var app = {
                             .addEventListener('click', event => {
                                 let pane,
                                     selector = `nested-cupertino-pane-${uuidGen()}`;
-                                initNestedPane(pane, selector);
+                                initNestedPane(pane, selector, undefined, true);
                             });
                     }
                 },
