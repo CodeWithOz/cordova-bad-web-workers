@@ -114,7 +114,7 @@ h1 {
     padding: 0.5em;
 }
 
-.cupertino-pane li {
+.cupertino-pane li, .nested-pane {
     padding: 3em 0;
 }
 

@@ -178,7 +178,7 @@ var app = {
             requestAnimationFrame(() => {
                 document.body.insertAdjacentHTML(
                     'beforeend',
-                    `<div class="${selector}">
+                    `<div class="${selector} nested-pane">
                         <h1>Header</h1>
                         <div class="content">
                             <button type="button" class="toggle init-nested-bottom-sheet">Init nested pane</button>
