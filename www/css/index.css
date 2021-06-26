@@ -123,7 +123,7 @@ h1 {
     overflow-y: hidden;
 }
 
-.cupertino-pane-wrapper .content {
+.cupertino-pane .content {
     background-color: aquamarine;
     display: flex;
     align-items: center;
