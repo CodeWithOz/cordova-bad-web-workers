@@ -28,6 +28,9 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         window.WEBVIEW_SERVER_URL = window.origin;
+        document.querySelector('button').addEventListener('click', e => {
+            app.getCamPic(console.log, console.error);
+        });
     },
     getCamPic: function (cb, errCb) {
         const sourceType = Camera.PictureSourceType.PHOTOLIBRARY;

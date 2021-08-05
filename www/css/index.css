@@ -123,13 +123,17 @@ h1 {
     overflow-y: hidden;
 }
 
-.cupertino-pane .content {
+.content {
     background-color: aquamarine;
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
     width: 100%;
     height: 300px;
+}
+
+button {
+    padding: 1em;
 }
 
 .cupertino-pane-wrapper .scroller {
