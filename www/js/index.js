@@ -81,8 +81,8 @@ var app = {
 
         function cameraSuccess(imageURI) {
             const newImageURI = window.Ionic.WebView.convertFileSrc(imageURI);
-            let uploadCropProfile = new Croppie(
-                document.querySelector('#cropImageProfile'),
+            window.uploadCropProfile = new Croppie(
+                document.querySelector('.content'),
                 {
                     enableOrientation: false,
                     enableExif: true,
@@ -114,13 +114,9 @@ var app = {
                         function (dirEntry) {
                             // Setup filename and assume a jpg file
                             const filename =
-                                Math.floor(
-                                    Math.random() * 100 + 1
-                                ) + '-image.jpg';
-                            console.log(
-                                'File name cropped ',
-                                filename
-                            );
+                                Math.floor(Math.random() * 100 + 1) +
+                                '-image.jpg';
+                            console.log('File name cropped ', filename);
                             // Get file and create if it's not available
                             dirEntry.getFile(
                                 filename,
@@ -130,57 +126,41 @@ var app = {
                                 },
                                 function (fileEntry) {
                                     // convert base64 data to jpg
-                                    let binary = base64toBlob(
-                                        resp,
-                                        'jpg'
-                                    );
+                                    let binary = base64toBlob(resp, 'jpg');
 
                                     // store created jpg file
-                                    fileEntry.createWriter(
-                                        function (fileWriter) {
-                                            // Write file end function
-                                            fileWriter.onwriteend =
-                                                function () {
-                                                    console.log(
-                                                        'Writing done'
-                                                    );
-                                                    // store and get it's path
-                                                    const croppedImageURL =
-                                                        fileEntry.nativeURL;
+                                    fileEntry.createWriter(function (
+                                        fileWriter
+                                    ) {
+                                        // Write file end function
+                                        fileWriter.onwriteend = function () {
+                                            console.log('Writing done');
+                                            // store and get it's path
+                                            const croppedImageURL =
+                                                fileEntry.nativeURL;
 
-                                                    // send cropped image URL in callback
-                                                    cb(
-                                                        croppedImageURL
-                                                    );
-                                                };
+                                            // send cropped image URL in callback
+                                            cb(croppedImageURL);
+                                            uploadCropProfile.destroy();
+                                        };
 
-                                            fileWriter.onerror =
-                                                function (e) {
-                                                    console.log(
-                                                        'Writing error ',
-                                                        e
-                                                    );
-                                                };
+                                        fileWriter.onerror = function (e) {
+                                            console.log('Writing error ', e);
+                                        };
 
-                                            // If data object is not passed in,
-                                            // create a new Blob instead.
-                                            if (!binary) {
-                                                binary =
-                                                    new Blob(
-                                                        [
-                                                            'missing data',
-                                                        ],
-                                                        {
-                                                            type: 'text/plain',
-                                                        }
-                                                    );
-                                            }
-                                            // Write file call
-                                            fileWriter.write(
-                                                binary
+                                        // If data object is not passed in,
+                                        // create a new Blob instead.
+                                        if (!binary) {
+                                            binary = new Blob(
+                                                ['missing data'],
+                                                {
+                                                    type: 'text/plain',
+                                                }
                                             );
                                         }
-                                    );
+                                        // Write file call
+                                        fileWriter.write(binary);
+                                    });
                                 },
                                 function (errorCreateFile) {
                                     console.error(errorCreateFile);
@@ -189,7 +169,8 @@ var app = {
                         },
                         function (errorCreateFS) {
                             console.error(
-                                'Error getting filesystem:', errorCreateFS
+                                'Error getting filesystem:',
+                                errorCreateFS
                             );
                         }
                     );
