@@ -180,3 +180,7 @@ h1 {
     padding: 1em;
     z-index: 12;
 }
+
+.inject {
+    padding: 1em;
+}
