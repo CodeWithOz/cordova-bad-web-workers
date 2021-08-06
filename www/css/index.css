@@ -114,8 +114,18 @@ h1 {
     padding: 0.5em;
 }
 
+.cupertino-pane {
+    height: 80%;
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden auto;
+}
+
 .cupertino-pane li, .nested-pane {
-    padding: 3em 0;
+    padding: 2em 0;
+    background: silver;
+    border: 5px solid black;
+    will-change: transform;
 }
 
 .cupertino-pane .scroller {

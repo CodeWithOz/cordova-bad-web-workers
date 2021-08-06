@@ -27,39 +27,10 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
-        const autoCompleteJS = new autoComplete({
-            wrapper: false,
-            data: {
-                src: ["Sauce - Thousand Island", "Wild Boar - Tenderloin", "Goat - Whole Cut"],
-                cache: false,
-            },
-            selector: '.cupertino-pane .content',
-            searchEngine: function (query, record) {
-                return record;
-            },
-            resultsList: {
-                element: function (list, { matches }) {
-                    if (matches.length < 1) {
-                        // hide and empty the autosuggest list
-                        list.style.display = 'none';
-                        list.innerHTML = '';
-                    } else {
-                        // ensure that the autosuggest list shows
-                        list.style.display = '';
-                    }
-                },
-                destination: '.cupertino-pane .content',
-                noResults: true,
-            },
-            events: {
-                input: {
-                    selection: (event) => {
-                        const selection = event.detail.selection.value;
-                        autoCompleteJS.input.value = selection;
-                    }
-                }
-            }
-        });
+        const ul = document.querySelector('.cupertino-pane ul');
+        for (let i = 0; i < 1500; i++) {
+            ul.insertAdjacentHTML('beforeend', `<li>test ${i}</li>`);
+        }
     },
 };
 
