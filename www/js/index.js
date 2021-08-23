@@ -28,15 +28,9 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         const ul = document.querySelector('.cupertino-pane ul');
-        for (let i = 0; i < 1500; i++) {
-            ul.insertAdjacentHTML('beforeend', `<li>test ${i}</li>`);
-        }
         const injectBtn = document.querySelector('.inject');
         injectBtn.addEventListener('click', e => {
-            ul.insertAdjacentHTML(
-                'afterbegin',
-                `<li>test ${Math.random().toFixed(2)}</li>`
-            );
+            ul.innerHTML += ul.innerHTML;
         });
     },
 };
