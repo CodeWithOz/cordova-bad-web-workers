@@ -27,10 +27,49 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
+        let haON = true,
+            cvON = true,
+            opON = true;
         const ul = document.querySelector('.cupertino-pane ul');
         const injectBtn = document.querySelector('.inject');
         injectBtn.addEventListener('click', e => {
             ul.innerHTML += ul.innerHTML;
+        });
+        const toggleHaBtn = document.querySelector('.toggle-ha');
+        toggleHaBtn.addEventListener('click', e => {
+            if (haON) {
+                ul.classList.remove('ha');
+                toggleHaBtn.querySelector('span').textContent = 'OFF';
+                haON = false;
+            } else {
+                ul.classList.add('ha');
+                toggleHaBtn.querySelector('span').textContent = 'ON';
+                haON = true;
+            }
+        });
+        const toggleCvBtn = document.querySelector('.toggle-cv');
+        toggleCvBtn.addEventListener('click', e => {
+            if (cvON) {
+                ul.classList.remove('cv');
+                toggleCvBtn.querySelector('span').textContent = 'none';
+                cvON = false;
+            } else {
+                ul.classList.add('cv');
+                toggleCvBtn.querySelector('span').textContent = 'auto';
+                cvON = true;
+            }
+        });
+        const toggleOpBtn = document.querySelector('.toggle-op');
+        toggleOpBtn.addEventListener('click', e => {
+            if (opON) {
+                ul.classList.remove('op');
+                toggleOpBtn.querySelector('span').textContent = 'OFF';
+                opON = false;
+            } else {
+                ul.classList.add('op');
+                toggleOpBtn.querySelector('span').textContent = 'ON';
+                opON = true;
+            }
         });
     },
 };

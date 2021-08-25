@@ -181,16 +181,18 @@ h1 {
     z-index: 12;
 }
 
-.inject {
+.inject, .toggle-ha, .toggle-cv, .toggle-op {
     padding: 1em;
     margin: 0.5em 0;
 }
 .replyHeaderMsg, .chatMsg {
     margin: 5px 0;
     position: relative;
+    word-wrap: break-word;
+}
+ul.ha .replyHeaderMsg, ul.ha .chatMsg {
     -webkit-backface-visibility: hidden;
     -webkit-transform: translate3D(0, 0, 0);
-    word-wrap: break-word;
 }
 .cf {
     zoom: 1;
@@ -290,7 +292,11 @@ li:not(.gif) .aspect-ratio-wrapper {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+ul.op li:not(.gif) .aspect-ratio-wrapper {
     animation: redraw 10s linear infinite;
+}
+ul.cv li:not(.gif) .aspect-ratio-wrapper {
     content-visibility: auto;
 }
 .aspect-ratio-wrapper {
