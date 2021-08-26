@@ -35,7 +35,7 @@ body {
     padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-right, 0px);
     text-transform:uppercase;
     width:100%;
-    background: linear-gradient(45deg, blue 50%, red 50%);
+    background: white;
 }
 
 /* Portrait layout (default) */
@@ -107,78 +107,10 @@ h1 {
     -webkit-animation:fade 3000ms infinite;
 }
 
-.toggle {
-    background: red;
-    width: 150px;
-    font-size: 1.2em;
-    margin: 0.2em;
-    padding: 0.5em;
-}
-
 .cupertino-pane {
-    height: 80%;
     width: 80%;
     margin: 0 auto;
     overflow: hidden auto;
-}
-
-.cupertino-pane li, .nested-pane {
-    padding: 2em 0;
-    background: silver;
-    border: 5px solid black;
-    will-change: transform;
-}
-
-.cupertino-pane .scroller {
-    height: 70vh;
-    overflow-y: hidden;
-}
-
-.cupertino-pane .content {
-    background-color: aquamarine;
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    width: 100%;
-    height: 300px;
-}
-
-.cupertino-pane-wrapper .scroller {
-    width: calc(100% / 3);
-    transition: transform ease 0.5s;
-    position: relative;
-    left: 0;
-    right: 0;
-    opacity: 1;
-    background: lightblue;
-}
-
-.cupertino-pane-wrapper .scroller.second {
-    background: greenyellow;
-}
-
-.cupertino-pane-wrapper .scroller.second.active {
-    transform: translateX(-100%);
-}
-
-.cupertino-pane-wrapper .scroller.third {
-    background: purple;
-}
-
-.cupertino-pane-wrapper .scroller.third.active {
-    transform: translateX(-200%);
-}
-
-.cupertino-pane-wrapper button.switch-tabs {
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    background-color: red;
-    top: 10px;
-    left: 10px;
-    border-radius: 1000px;
-    padding: 1em;
-    z-index: 12;
 }
 
 .inject, .toggle-ha, .toggle-cv, .toggle-op {
