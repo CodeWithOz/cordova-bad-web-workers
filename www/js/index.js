@@ -29,8 +29,25 @@ var app = {
     onDeviceReady: function() {
         let haON = true,
             cvON = true,
-            opON = true;
+            opON = true,
+            optmON = false;
         const ul = document.querySelector('.cupertino-pane ul');
+        const unoptimizedImgs = [...ul.querySelectorAll('li img')].map(
+            ({ src }) => src
+        );
+        const optimizedImgs = [
+            'https://res.cloudinary.com/ucheozoemena/image/upload/v1630193186/unoptimized-2_dmmr1s.jpg',
+            'https://res.cloudinary.com/ucheozoemena/image/upload/v1630193191/unoptimized-3_h2xluc.jpg',
+            'https://res.cloudinary.com/ucheozoemena/image/upload/v1630193196/unoptimized-4_hxt1sl.jpg',
+            'https://res.cloudinary.com/ucheozoemena/image/upload/v1630193201/unoptimized-5_whamfk.jpg',
+            'https://res.cloudinary.com/ucheozoemena/image/upload/v1630193383/unoptimized-6_lbeojg.jpg',
+            'https://res.cloudinary.com/ucheozoemena/image/upload/v1630193388/unoptimized-7_frj1av.jpg',
+            'https://res.cloudinary.com/ucheozoemena/image/upload/v1630193391/unoptimized-8_lanrys.jpg',
+            'https://res.cloudinary.com/ucheozoemena/image/upload/v1630193395/unoptimized-9_logbvb.jpg',
+            'https://res.cloudinary.com/ucheozoemena/image/upload/v1630193517/unoptimized-10_xoz1is.jpg',
+            'https://res.cloudinary.com/ucheozoemena/image/upload/v1630193520/unoptimized-11_ysyo0w.jpg',
+            'https://res.cloudinary.com/ucheozoemena/image/upload/v1630193524/unoptimized-12_oymqwm.jpg',
+        ];
         const injectBtn = document.querySelector('.inject');
         injectBtn.addEventListener('click', e => {
             ul.innerHTML += ul.innerHTML;
@@ -69,6 +86,23 @@ var app = {
                 ul.classList.add('op');
                 toggleOpBtn.querySelector('span').textContent = 'ON';
                 opON = true;
+            }
+        });
+        const toggleOptmzBtn = document.querySelector('.toggle-src');
+        toggleOptmzBtn.addEventListener('click', e => {
+            if (optmON) {
+                ul.querySelectorAll('li img').forEach((node, idx) => {
+                    node.src = unoptimizedImgs[idx];
+                });
+                toggleOptmzBtn.querySelector('span').textContent =
+                    'unoptimized';
+                optmON = false;
+            } else {
+                ul.querySelectorAll('li img').forEach((node, idx) => {
+                    node.src = optimizedImgs[idx];
+                });
+                toggleOptmzBtn.querySelector('span').textContent = 'optimized';
+                optmON = true;
             }
         });
     },

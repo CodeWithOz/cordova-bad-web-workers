@@ -113,7 +113,7 @@ h1 {
     overflow: hidden auto;
 }
 
-.inject, .toggle-ha, .toggle-cv, .toggle-op {
+.inject, .toggle-ha, .toggle-cv, .toggle-op, .toggle-src {
     padding: 1em;
     margin: 0.5em 0;
 }
