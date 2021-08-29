@@ -92,6 +92,7 @@ var app = {
         toggleOptmzBtn.addEventListener('click', e => {
             if (optmON) {
                 ul.querySelectorAll('li img').forEach((node, idx) => {
+                    node.src = '';
                     node.src = unoptimizedImgs[idx];
                 });
                 toggleOptmzBtn.querySelector('span').textContent =
@@ -99,6 +100,7 @@ var app = {
                 optmON = false;
             } else {
                 ul.querySelectorAll('li img').forEach((node, idx) => {
+                    node.src = '';
                     node.src = optimizedImgs[idx];
                 });
                 toggleOptmzBtn.querySelector('span').textContent = 'optimized';
