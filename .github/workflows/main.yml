@@ -91,7 +91,7 @@ jobs:
       run: |
         npm run install-plugins
         npm run install-webview-4-2-1
-        cordova platform add android@9.0.0
+        cordova platform add android@10.1.0
         cordova build android
 
     # Upload APK
