@@ -107,6 +107,84 @@ var app = {
                 optmON = true;
             }
         });
+        function downloadImage(URL, Folder_Name, File_Name) {
+            // step to request a file system
+            const storageFolder =
+                globals.deviceOSVersion && globals.deviceOSVersion >= 10
+                    ? 'externalApplicationStorageDirectory'
+                    : 'externalRootDirectory';
+            window.resolveLocalFileSystemURL(
+                cordova.file[storageFolder],
+                fileSystemSuccess,
+                fileSystemFail
+            );
+
+            function fileSystemSuccess(fileSystem) {
+                const download_link = encodeURI(URL);
+                // Get extension of URL, falling back to mp4 or jpg if the extension can't be determined
+                const fallback = 'jpg';
+                let ext = download_link.match(/\.(\w+)\?/);
+                if (ext && ext[1]) {
+                    let value = ext[1];
+                    if (value.length < 3 || value.length > 4) {
+                        // can't be png/jpg/jpeg/mp4
+                        ext = fallback;
+                    } else {
+                        ext = /(jpe?g|png|mp4)/.test(value) ? value : fallback;
+                    }
+                } else {
+                    ext = fallback;
+                }
+                const directoryEntry = fileSystem.filesystem.root; // to get root path of directory
+                directoryEntry.getDirectory(
+                    Folder_Name,
+                    {
+                        create: true,
+                        exclusive: false,
+                    },
+                    onDirectorySuccess,
+                    onDirectoryFail
+                ); // creating folder in sdcard
+                const rootdir = fileSystem.filesystem.root;
+                let fp = rootdir.toURL(); // Returns Fulpath of local directory
+                console.log(rootdir);
+                fp = fp + Folder_Name + '/' + File_Name + '.' + ext; // fullpath and name of the file which we want to give
+                // download function call
+                filetransfer(download_link, fp);
+            }
+
+            function onDirectorySuccess(parent) {
+                // alert("Sucesso");
+            }
+
+            function onDirectoryFail(error) {
+                // Error while creating directory
+                // alert("Unable to create new directory: " + error.code);
+            }
+
+            function fileSystemFail(evt) {
+                // Unable to access file system
+                // alert(evt.target.error.code);
+            }
+            function filetransfer(download_link, fp) {
+                const fileTransfer = new FileTransfer();
+
+                // File download function with URL and local path
+                fileTransfer.download(
+                    download_link,
+                    fp,
+                    function (entry) {
+                        // alert("download complete: " + entry.fullPath);
+                        alert('Media downloaded');
+                    },
+                    function (error) {
+                        // Download abort errors or download failed errors
+                        console.log(error);
+                    },
+                    false
+                );
+            }
+        }
     },
 };
 
