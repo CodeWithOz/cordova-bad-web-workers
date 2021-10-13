@@ -16,7 +16,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyDaW1TSNJ8FO4awiAo8MZXIiGAmmSwLDsU" />
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyDyLsbwL6n3ry80Q1zuDMvBJve-vj7no3U" />
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="android-minSdkVersion" value="22" />
