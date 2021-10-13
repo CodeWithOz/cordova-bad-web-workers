@@ -46,7 +46,7 @@ var app = {
             mapShown = !mapShown;
             map.setVisible(mapShown);
             requestAnimationFrame(() => {
-                document.querySelector('.map').style.display = '';
+                document.querySelector('#map').style.display = '';
             });
             // TODO: plot markers
             const markers = [
@@ -321,7 +321,7 @@ var app = {
             mapShown = !mapShown;
             map.setVisible(mapShown);
             requestAnimationFrame(() => {
-                document.querySelector('.map').style.display = 'none';
+                document.querySelector('#map').style.display = 'none';
             });
             map.setCameraTarget(latLngPair[0]);
         });
@@ -338,7 +338,7 @@ var app = {
             mapShown = !mapShown;
             map.setVisible(mapShown);
             requestAnimationFrame(() => {
-                document.querySelector('.map').style.display = 'none';
+                document.querySelector('#map').style.display = 'none';
             });
         }
     },
