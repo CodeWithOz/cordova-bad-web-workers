@@ -47,6 +47,62 @@ var app = {
                     e => alert(`error saving value in native storage: ${e}`)
                 );
             });
+
+        window.sqlitePlugin.openDatabase(
+            {
+                name: 'native-storage-test.db',
+                iosDatabaseLocation: 'default',
+                androidDatabaseProvider: 'system',
+                androidLockWorkaround: 1,
+            },
+            db => {
+                db.executeSql(
+                    'CREATE TABLE IF NOT EXISTS testing (id, value, UNIQUE(id) ON CONFLICT REPLACE)',
+                    [],
+                    res => {
+                        document
+                            .querySelector('button.get-sqlite')
+                            .addEventListener('click', e => {
+                                db.executeSql(
+                                    'SELECT value FROM testing WHERE id = ?',
+                                    ['test'],
+                                    res =>
+                                        alert(
+                                            `value from sqlite: ${
+                                                res.rows.length > 0
+                                                    ? res.rows.item(0).value
+                                                    : 'no value'
+                                            }`
+                                        ),
+                                    e =>
+                                        alert(
+                                            `error getting value from sqlite: ${e}`
+                                        )
+                                );
+                            });
+                        document
+                            .querySelector('button.set-sqlite')
+                            .addEventListener('click', e => {
+                                const value = Math.random().toFixed(4);
+                                db.executeSql(
+                                    'INSERT OR REPLACE INTO testing (id, value) VALUES (?,?)',
+                                    ['test', value],
+                                    res =>
+                                        alert(
+                                            `value saved in sqlite: ${value}`
+                                        ),
+                                    e =>
+                                        alert(
+                                            `error saving value in sqlite: ${e}`
+                                        )
+                                );
+                            });
+                    },
+                    e => alert(`error initializing table in sqlite db: ${e}`)
+                );
+            },
+            e => alert(`error initializing sqlite db: ${e}`)
+        );
     },
 };
 
