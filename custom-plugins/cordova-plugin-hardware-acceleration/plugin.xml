@@ -18,7 +18,7 @@
   <platform name="android">
     <config-file target="config.xml" parent="/*">
       <!-- setLayerType was introduced in API level 11 -->
-      <preference name="android-minSdkVersion" value="11">
+      <preference name="android-minSdkVersion" value="11"/>
     </config-file>
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="HardwareAcceleration">
