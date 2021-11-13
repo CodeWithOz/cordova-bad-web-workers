@@ -17,21 +17,21 @@ public class HardwareAcceleration extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("disable")) {
             View view = webView.getView();
-            view.setLayerType(LAYER_TYPE_SOFTWARE);
+            view.setLayerType(View.LAYER_TYPE_SOFTWARE);
             return true;
         } else if (action.equals("enable")) {
             View view = webView.getView();
-            view.setLayerType(LAYER_TYPE_HARDWARE);
+            view.setLayerType(View.LAYER_TYPE_HARDWARE);
             return true;
         } else if (action.equals("getLayerType")) {
             View view = webView.getView();
             int layerType = view.getLayerType();
             String typeName = "N/A";
-            if (layerType == LAYER_TYPE_NONE) {
+            if (layerType == View.LAYER_TYPE_NONE) {
                 typeName = "NONE";
-            } else if (layerType == LAYER_TYPE_SOFTWARE) {
+            } else if (layerType == View.LAYER_TYPE_SOFTWARE) {
                 typeName = "SOFTWARE";
-            } else if (layerType == LAYER_TYPE_HARDWARE) {
+            } else if (layerType == View.LAYER_TYPE_HARDWARE) {
                 typeName = "HARDWARE";
             }
             callbackContext.success(typeName);
