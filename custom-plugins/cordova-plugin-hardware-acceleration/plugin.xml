@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-hardware-acceleration"
+        version="0.0.1">
+
+  <name>HardwareAcceleration</name>
+
+  <engines>
+    <engine name="cordova" version=">=8.0.0"/>
+  </engines>
+
+  <asset src="www/js/hardware-acceleration.js" target="js/hardware-acceleration.js"/>
+
+  <js-module src="www/js/hardware-acceleration.js" name="hardware-acceleration">
+    <clobbers target="hardwareAcceleration" />
+  </js-module>
+
+  <platform name="android">
+    <config-file target="config.xml" parent="/*">
+      <!-- setLayerType was introduced in API level 11 -->
+      <preference name="android-minSdkVersion" value="11">
+    </config-file>
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="HardwareAcceleration">
+        <param name="android-package" value="plugin.hardwareacceleration.hardwareacceleration.HardwareAcceleration"/>
+        <param name="onload" value="true"/>
+      </feature>
+    </config-file>
+
+    <source-file src="src/android/HardwareAcceleration.java" target-dir="src/hardwareAcceleration/plugin/"/>
+  </platform>
+</plugin>
