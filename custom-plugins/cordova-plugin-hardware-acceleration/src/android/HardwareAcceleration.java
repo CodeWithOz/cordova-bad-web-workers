@@ -27,11 +27,11 @@ public class HardwareAcceleration extends CordovaPlugin {
             View view = webView.getView();
             int layerType = view.getLayerType();
             String typeName = "N/A";
-            if (layerType == View.LAYER_TYPE_NONE, null) {
+            if (layerType == View.LAYER_TYPE_NONE) {
                 typeName = "NONE";
-            } else if (layerType == View.LAYER_TYPE_SOFTWARE, null) {
+            } else if (layerType == View.LAYER_TYPE_SOFTWARE) {
                 typeName = "SOFTWARE";
-            } else if (layerType == View.LAYER_TYPE_HARDWARE, null) {
+            } else if (layerType == View.LAYER_TYPE_HARDWARE) {
                 typeName = "HARDWARE";
             }
             callbackContext.success(typeName);
