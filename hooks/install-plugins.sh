@@ -9,5 +9,5 @@ cordova plugin add https://github.com/CodeWithOz/cordova-plugin-nativestorage#0c
 # install the hardware acceleration plugin
 cordova plugin add ./custom-plugins/cordova-plugin-hardware-acceleration --save
 # install the amqp plugin
-cordova plugin add https://github.com/xiaoji-duan/cordova-plugin-rabbitmq#ebba54a5ba44c770462c2d68f1442879bb830701 --save
+cordova plugin add https://github.com/Textras-Inc/cordova-plugin-rabbitmq#27a67c92ed87a77b054ea11a72d11556f0f28ba2 --save
 
