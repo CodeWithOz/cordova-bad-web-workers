@@ -23,6 +23,7 @@
         <allow-intent href="market:*" />
         <preference name="android-minSdkVersion" value="22" />
         <preference name="android-targetSdkVersion" value="28" />
+        <preference name="BackgroundColor" value="0xffff00ff" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
