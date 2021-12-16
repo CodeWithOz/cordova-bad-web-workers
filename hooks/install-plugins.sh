@@ -12,7 +12,7 @@ cordova plugin add cordova-sqlite-storage@6.0.0 --save
 cordova plugin add cordova-plugin-purchase@10.5.0 --save
 cordova plugin add cordova-plugin-inappbrowser@5.0.0 --save
 cordova plugin add cordova-plugin-x-socialsharing@6.0.3 --save
-cordova plugin add branch-cordova-sdk@4.2.4 --save
+# cordova plugin add branch-cordova-sdk@4.2.4 --save
 cordova plugin add https://github.com/timkellypa/cordova-plugin-local-notifications.git --save
 cordova plugin add cordova-plugin-camera@6.0.0 --save
 cordova plugin add https://github.com/apache/cordova-plugin-file-transfer#ec11d2fd0e87d7d9e0ba94b1989ffb71af1c3c96 --save
