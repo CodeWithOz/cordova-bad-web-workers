@@ -32,6 +32,52 @@ var app = {
         let scrollTop;
         // initialize transformY variable as the lowest point in the viewport
         let highestTransformY = window.innerHeight;
+        const scrollSnapContainer = container.querySelector(`.app`);
+        const sectionScrollTimeline = new ScrollTimeline({
+            scrollSource: scrollSnapContainer,
+            orientation: 'inline',
+            fill: 'both',
+        });
+        const activeIndicator =
+            scrollSnapContainer.querySelector('.switcher__toggle');
+        const labels = scrollSnapContainer.querySelectorAll('label');
+        if (isElValid(activeIndicator)) {
+            // animate it's position
+            activeIndicator.animate(
+                {
+                    transform: [...labels].map(label => {
+                        const forAttr = label.getAttribute('for') || '';
+                        if (forAttr === 'public') {
+                            return 'translateX(calc(200% - 7px))';
+                        } else if (forAttr === 'profile') {
+                            return 'translateX(100%)';
+                        } else {
+                            return 'translateX(0px)';
+                        }
+                    }),
+                },
+                {
+                    duration: 1000,
+                    fill: 'both',
+                    timeline: sectionScrollTimeline,
+                }
+            );
+        }
+        labels.forEach(label => {
+            label.animate(
+                {
+                    color: [...labels].map(item =>
+                        item === label ? `white` : `black`
+                    ),
+                },
+                {
+                    duration: 1000,
+                    fill: 'both',
+                    timeline: sectionScrollTimeline,
+                }
+            );
+        });
+
         document.querySelector('.init-bottom-sheet').addEventListener('click', event => {
             initPane(undefined, true);
         });
