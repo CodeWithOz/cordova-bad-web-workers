@@ -57,6 +57,17 @@
             <h1>Header</h1>
             <button type="button" class="switch-tabs"></button>
             <div class="content">
+                <div class="centerer">
+                    <div class="switcher">
+                        <input type="radio" name="status-bottom-sheet-tabs" value="comment" id="comment" class="switcher__input switcher__input--comment" checked="">
+                        <label for="comment" class="switcher__label">Comments</label>
+                        <input type="radio" name="status-bottom-sheet-tabs" value="profile" id="profile" class="switcher__input switcher__input--profile">
+                        <label for="profile" class="switcher__label">Profile</label>
+                        <input type="radio" name="status-bottom-sheet-tabs" value="public" id="public" class="switcher__input switcher__input--public">
+                        <label for="public" class="switcher__label">Public</label>
+                        <span class="switcher__toggle"></span>
+                    </div>
+                </div>
                 <div class="scroller" overflow-y>
                     <li><span>Text 1</span></li>
                     <li><span>Text 2</span></li>
