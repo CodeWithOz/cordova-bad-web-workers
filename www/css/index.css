@@ -125,21 +125,28 @@ h1 {
 
 .cupertino-pane-wrapper .content {
     background-color: aquamarine;
-    display: flex;
+    display: grid;
+    grid: 1fr / auto-flow 100%;
     align-items: center;
     flex-wrap: nowrap;
-    width: 300vh;
+    width: 100vw;
     padding: 0.5em 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior: contain;
+    touch-action: pan-x;
+    scroll-behavior: smooth;
 }
 
 .cupertino-pane-wrapper .scroller {
-    width: calc(100% / 3);
     transition: transform ease 0.5s;
     position: relative;
     left: 0;
     right: 0;
     opacity: 1;
     background: lightblue;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
 }
 
 .cupertino-pane-wrapper .scroller.second {
