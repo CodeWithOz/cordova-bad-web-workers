@@ -27,6 +27,7 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
+        console.log('[app] deviceready fired');
         let myPane;
         let topHeight = 750;
         let scrollTop;
