@@ -33,7 +33,7 @@ var app = {
         let scrollTop;
         // initialize transformY variable as the lowest point in the viewport
         let highestTransformY = window.innerHeight;
-        const scrollSnapContainer = container.querySelector(`.app`);
+        const scrollSnapContainer = document.querySelector(`.app`);
         const sectionScrollTimeline = new ScrollTimeline({
             scrollSource: scrollSnapContainer,
             orientation: 'inline',
