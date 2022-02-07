@@ -33,15 +33,14 @@ var app = {
         let scrollTop;
         // initialize transformY variable as the lowest point in the viewport
         let highestTransformY = window.innerHeight;
-        const scrollSnapContainer = document.querySelector(`.app`);
+        const scrollSnapContainer = document.querySelector(`.content`);
         const sectionScrollTimeline = new ScrollTimeline({
             scrollSource: scrollSnapContainer,
             orientation: 'inline',
             fill: 'both',
         });
-        const activeIndicator =
-            scrollSnapContainer.querySelector('.switcher__toggle');
-        const labels = scrollSnapContainer.querySelectorAll('label');
+        const activeIndicator = document.querySelector('.switcher__toggle');
+        const labels = document.querySelectorAll('label');
         if (activeIndicator instanceof HTMLElement) {
             // animate it's position
             activeIndicator.animate(
