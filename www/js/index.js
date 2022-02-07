@@ -112,11 +112,11 @@ var app = {
                     myPane.destroy({ animate: true });
                     myPane = null;
                 }
-                document.querySelector('button.switch-tabs').removeEventListener('click', switchTabs);
+                // document.querySelector('button.switch-tabs').removeEventListener('click', switchTabs);
                 document.querySelectorAll('.cupertino-pane .scroller').forEach(node => node.removeEventListener('scroll', toggleDrag));
             },
             onDidPresent() {
-                document.querySelector('button.switch-tabs').addEventListener('click', switchTabs);
+                // document.querySelector('button.switch-tabs').addEventListener('click', switchTabs);
                 document.querySelectorAll('.cupertino-pane .scroller').forEach(node => node.addEventListener('scroll', toggleDrag));
             },
             topperOverflow: false,
