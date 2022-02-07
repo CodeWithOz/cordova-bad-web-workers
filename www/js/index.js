@@ -42,7 +42,7 @@ var app = {
         const activeIndicator =
             scrollSnapContainer.querySelector('.switcher__toggle');
         const labels = scrollSnapContainer.querySelectorAll('label');
-        if (isElValid(activeIndicator)) {
+        if (activeIndicator instanceof HTMLElement) {
             // animate it's position
             activeIndicator.animate(
                 {
