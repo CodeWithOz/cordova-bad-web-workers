@@ -40,7 +40,7 @@ body {
 /* Portrait layout (default) */
 .app {
     overflow-x: auto;
-    height: 100vh;
+    /* height: 100vh; */
     position: relative;
     width: 100vw;
     display: grid;
