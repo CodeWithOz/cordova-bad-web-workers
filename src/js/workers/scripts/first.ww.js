@@ -1,8 +1,8 @@
-importScripts('./deps/comlink/comlink.global.min.js');
-importScripts('./deps/dayjs/dayjs.min.js');
-importScripts('./deps/dayjs/customParseFormat.js');
-importScripts('./deps/dayjs/isSameOrAfter.js');
-importScripts('./deps/dayjs/isSameOrBefore.js');
+importScripts('../deps/comlink/comlink.global.min.js');
+importScripts('../deps/dayjs/dayjs.min.js');
+importScripts('../deps/dayjs/customParseFormat.js');
+importScripts('../deps/dayjs/isSameOrAfter.js');
+importScripts('../deps/dayjs/isSameOrBefore.js');
 
 dayjs.extend(dayjs_plugin_customParseFormat);
 dayjs.extend(dayjs_plugin_isSameOrAfter);
