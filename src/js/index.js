@@ -42,6 +42,7 @@ var app = {
             .catch(err =>
                 alert(`error importing main.js: ${JSON.stringify(err)}`)
             );
+        return;
         let myPane;
         let topHeight = 750;
         let scrollTop;
