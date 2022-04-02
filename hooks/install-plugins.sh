@@ -10,6 +10,7 @@ npm run build
 cp -r src/index.html www/
 cp -r src/js/index.js www/js
 cp -r src/js/workers/deps/ www/js/workers/
+rsync -a --prune-empty-dirs --include '*/' --exclude '*.js' src/js/ www/js
 
 # install androidx adapter plugins to workaround build failures
 cordova plugin add cordova-plugin-androidx --save
