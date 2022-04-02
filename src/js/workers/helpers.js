@@ -6,7 +6,7 @@ const workers = {
 
 export function getWorker(id) {
     try {
-        const worker = new Worker('./js/workers/' + workers[id]);
+        const worker = new Worker('./js/workers/scripts/' + workers[id]);
         const workerProxy = wrap(worker);
         return [workerProxy, worker];
     } catch (e) {
