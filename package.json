@@ -17,5 +17,8 @@
     "license": "Apache-2.0",
     "devDependencies": {
         "esbuild": "^0.14.30"
+    },
+    "dependencies": {
+        "comlink": "^4.3.1"
     }
 }
