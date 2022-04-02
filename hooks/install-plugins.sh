@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# install deps
+npm install
+
+# bundle js
+npm run build
+
 # copy over the src files
 cp -r src/* www/
 
