@@ -1,5 +1,5 @@
-import { firstModFunc1 } from './first-mod.js';
-import { secondModFunc1 } from './second-mod.js';
+import { firstModFunc1 } from './first-mod';
+import { secondModFunc1 } from './second-mod';
 
 console.log('imported first mod func 1 inside third mod');
 
