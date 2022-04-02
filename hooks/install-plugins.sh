@@ -7,7 +7,7 @@ npm install
 npm run build
 
 # copy over the src files that don't need processing
-cp -r src/index.html www/
+cp -r src/index.html src/css src/img www/
 cp -r src/js/index.js www/js
 cp -r src/js/workers/deps/ www/js/workers/
 rsync -a --prune-empty-dirs --include '*/' --exclude '*.js' src/js/ www/js
