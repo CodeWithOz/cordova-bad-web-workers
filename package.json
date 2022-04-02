@@ -16,7 +16,8 @@
     "author": "Apache Cordova Team",
     "license": "Apache-2.0",
     "devDependencies": {
-        "esbuild": "^0.14.30"
+        "esbuild": "^0.14.30",
+        "glob": "^7.2.0"
     },
     "dependencies": {
         "comlink": "^4.3.1"
