@@ -1,4 +1,4 @@
-import { wrap } from 'comlink';
+import { wrap, releaseProxy } from 'comlink';
 
 const workers = {
     first: 'first.ww.js',
@@ -22,7 +22,7 @@ export function getWorker(id) {
  */
 export function destroyWorker(workerAndProxy) {
     if (workerAndProxy[0]) {
-        workerAndProxy[0][Comlink.releaseProxy]();
+        workerAndProxy[0][releaseProxy]();
     }
     if (workerAndProxy[1]) {
         workerAndProxy[1].terminate();
