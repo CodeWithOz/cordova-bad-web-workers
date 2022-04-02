@@ -1,0 +1,15 @@
+body {
+    animation: bodyBg 3s ease infinite forward;
+}
+
+@keyframes bodyBg {
+    0% {
+        background: lightblue;
+    }
+    50% {
+        background: lightcoral;
+    }
+    100% {
+        background: lightblue;
+    }
+}

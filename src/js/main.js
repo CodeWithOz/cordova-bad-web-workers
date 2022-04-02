@@ -65,4 +65,18 @@ export function initAppAfterDeviceReady() {
                     destroyWorker(workerAndProxy);
                 });
         });
+    document
+        .querySelector('.destroy-bottom-sheet')
+        .addEventListener('click', e => {
+            import('./pages/test/index.js')
+                .then(({ pageFunc }) => {
+                    pageFunc('testing page func');
+                })
+                .catch(err => {
+                    console.log(`error importing "test" page`, err);
+                    alert(
+                        `error importing "test" page: ${JSON.stringify(err)}`
+                    );
+                });
+        });
 }
