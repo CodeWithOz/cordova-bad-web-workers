@@ -1,7 +1,7 @@
 const glob = require('glob');
 const { buildSync } = require('esbuild');
 
-glob('src/js/workers/scripts/*.js', (err, files) => {
+glob('src/js/{workers/scripts/*.js,pages/**/*.js}', (err, files) => {
     if (err) {
         console.error('error finding matching glob files:', err);
         process.exit(1);
