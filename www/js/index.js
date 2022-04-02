@@ -19,6 +19,13 @@
 var app = {
     // Application Constructor
     initialize: function() {
+        import('./main.js')
+            .then(({ initAppBeforeDeviceReady }) => {
+                initAppBeforeDeviceReady();
+            })
+            .catch(err =>
+                alert(`error importing main.js: ${JSON.stringify(err)}`)
+            );
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
 
@@ -28,6 +35,13 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         console.log('[app] deviceready fired');
+        import('./main.js')
+            .then(({ initAppAfterDeviceReady }) => {
+                initAppAfterDeviceReady();
+            })
+            .catch(err =>
+                alert(`error importing main.js: ${JSON.stringify(err)}`)
+            );
         let myPane;
         let topHeight = 750;
         let scrollTop;
