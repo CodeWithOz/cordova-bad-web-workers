@@ -11,9 +11,6 @@ export function secondModFunc1() {
 export function secondModFunc2() {
     console.log('executing third mod func 1 inside second mod func 2');
     thirdModFunc1();
-}
-
-export function secondModFunc3() {
-    console.log('executing third mod func 2 inside second mod func 3');
+    console.log('executing third mod func 2 inside second mod func 2');
     thirdModFunc2();
 }
