@@ -1,17 +1,20 @@
 {
-  "name": "com.bad.web.workers",
-  "displayName": "BadWebWorkers",
-  "version": "1.0.0",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
-  "main": "index.js",
-  "scripts": {
-    "install-plugins": "bash hooks/install-plugins.sh",
-    "install-webview-2-5-1": "bash hooks/install-webview-2-5-1.sh",
-    "install-webview-4-2-1": "bash hooks/install-webview-4-2-1.sh"
-  },
-  "keywords": [
-    "ecosystem:cordova"
-  ],
-  "author": "Apache Cordova Team",
-  "license": "Apache-2.0"
+    "name": "com.bad.web.workers",
+    "displayName": "BadWebWorkers",
+    "version": "1.0.0",
+    "description": "A sample Apache Cordova application that responds to the deviceready event.",
+    "main": "index.js",
+    "scripts": {
+        "install-plugins": "bash hooks/install-plugins.sh",
+        "install-webview-2-5-1": "bash hooks/install-webview-2-5-1.sh",
+        "install-webview-4-2-1": "bash hooks/install-webview-4-2-1.sh"
+    },
+    "keywords": [
+        "ecosystem:cordova"
+    ],
+    "author": "Apache Cordova Team",
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "esbuild": "^0.14.30"
+    }
 }
