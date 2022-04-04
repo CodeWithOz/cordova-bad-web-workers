@@ -29,4 +29,13 @@ export function initAppAfterDeviceReady() {
             state.fakeProp = newVal;
             alert(`setting state.fakeProp: ${state.fakeProp}`);
         });
+    document
+        .querySelector('.third-bottom-sheet')
+        .addEventListener('click', e => {
+            import('./pages/test/index')
+                .then(({ pageFunc }) => {
+                    pageFunc();
+                })
+                .catch(err => alert(`error importing test script: ${err}`));
+        });
 }

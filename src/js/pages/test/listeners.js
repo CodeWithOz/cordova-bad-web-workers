@@ -1,7 +1,9 @@
-function internalFunc(value) {
-    return value;
-}
+import { state } from '../../first-mod';
 
-export const pageFunc = function (value) {
-    alert(`invoked page func with value: ${internalFunc(value)}`);
+export const pageFunc = function () {
+    if (state) {
+        alert(`[LAZYLOAD] state.fakeProp: ${state.fakeProp}`);
+    } else {
+        alert(`[LAZYLOAD] state: ${state}`);
+    }
 };
