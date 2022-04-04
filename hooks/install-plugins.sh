@@ -4,7 +4,7 @@
 npm install
 
 # bundle js
-npm run build
+CI_ENV=dev npm run build
 
 # copy over the src files that don't need processing
 cp -r src/index.html src/css src/img www/
