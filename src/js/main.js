@@ -1,3 +1,5 @@
+import { CupertinoPane } from 'cupertino-pane/dist/core';
+import { BackdropModule } from 'cupertino-pane/dist/modules';
 import { secondModFunc1, secondModFunc2 } from './second-mod';
 import { thirdModFunc1, thirdModFunc2 } from './third-mod';
 import { state } from './first-mod';
@@ -32,6 +34,7 @@ export function initAppAfterDeviceReady() {
         });
     function initPane(
         config = {
+            modules: [BackdropModule],
             breaks: {
                 top: {
                     enabled: true,
