@@ -32,6 +32,18 @@ export function initAppAfterDeviceReady() {
                 myPane = null;
             }
         });
+    document
+        .querySelector('.third-bottom-sheet')
+        .addEventListener('click', e => {
+            if (myPane) {
+                myPane.setBreakpoints({
+                    middle: {
+                        enabled: true,
+                        height: 400,
+                    },
+                });
+            }
+        });
     function initPane(
         config = {
             modules: [BackdropModule],
