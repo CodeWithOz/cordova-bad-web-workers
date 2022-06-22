@@ -19,6 +19,14 @@ export function initAppAfterDeviceReady() {
     console.log('[CUSTOM LOG] app initialized after deviceready fires');
     // secondModFunc2();
     // thirdModFunc2();
+    document.addEventListener(
+        'backbutton',
+        e => {
+            console.log('backbutton event:', e);
+            alert('backbutton pressed');
+        },
+        false
+    );
     document
         .querySelector('.init-bottom-sheet')
         .addEventListener('click', e => {
