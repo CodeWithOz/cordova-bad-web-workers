@@ -48,11 +48,24 @@ export function initAppAfterDeviceReady() {
     function initPane(
         config = {
             // modules: [BackdropModule],
+            backdrop: true,
+            bottomClose: true,
+            fastSwipeClose: true,
+            fastSwipeSensivity: 1,
+            dragBy: [`.pane`, `.backdrop`],
+            handleKeyboard: false,
+            initialBreak: 'top',
             breaks: {
                 top: {
                     enabled: true,
                     // height: topHeight,
                     height: window.innerHeight - 81,
+                },
+                middle: {
+                    enabled: true,
+                    // this breakpoint is always halfway between the bottom of the screen and the
+                    // top breakpoint
+                    height: (window.innerHeight - 81) / 2,
                 },
             },
             // events: {
