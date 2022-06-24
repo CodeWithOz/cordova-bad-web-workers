@@ -33,6 +33,7 @@ export function initAppAfterDeviceReady() {
                 myPane = null;
             }
         });
+    /*
     document
         .querySelector('.third-bottom-sheet')
         .addEventListener('click', e => {
@@ -45,6 +46,7 @@ export function initAppAfterDeviceReady() {
                 });
             }
         });
+    */
     function initPane(
         config = {
             // modules: [BackdropModule],

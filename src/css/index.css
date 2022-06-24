@@ -252,3 +252,17 @@ h1 {
     transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
     will-change: transform;
 }
+
+.sheetLogs {
+    position: absolute;
+    height: 200px;
+    min-height: 30vh;
+    overflow-y: auto;
+    width: 75vw;
+    top: 120px;
+    transform: translateX(12.5vw);
+    background-color: black;
+    color: white;
+    white-space: pre-wrap;
+    z-index: 10000;
+}
