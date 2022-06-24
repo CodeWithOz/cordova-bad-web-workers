@@ -33,6 +33,22 @@ export function initAppAfterDeviceReady() {
                 myPane = null;
             }
         });
+    document.querySelector('.copyLogs button').addEventListener('click', e => {
+        const sheetLogs = document.querySelector('.sheetLogs').innerText;
+        cordova.plugins.clipboard.copy(
+            sheetLogs,
+            () => {
+                const { target } = e;
+                target.textContent = 'Copied!';
+                target.disabled = true;
+                setTimeout(() => {
+                    target.textContent = 'Copy logs';
+                    target.disabled = false;
+                }, 2000);
+            },
+            error => alert(`error copying to clipboard: ${error}`)
+        );
+    });
     /*
     document
         .querySelector('.third-bottom-sheet')

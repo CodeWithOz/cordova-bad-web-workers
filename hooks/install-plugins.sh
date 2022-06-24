@@ -15,3 +15,4 @@ rsync -a --prune-empty-dirs --include '*/' --exclude '*.js' src/js/ www/js
 # install androidx adapter plugins to workaround build failures
 cordova plugin add cordova-plugin-androidx --save
 cordova plugin add cordova-plugin-androidx-adapter --save
+cordova plugin add cordova-clipboard@1.3.0 --save

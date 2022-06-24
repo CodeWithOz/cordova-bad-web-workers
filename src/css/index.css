@@ -266,3 +266,18 @@ h1 {
     white-space: pre-wrap;
     z-index: 10000;
 }
+
+.copyLogs button {
+    position: absolute;
+    padding: 1em;
+    width: 75vw;
+    top: calc(140px + max(200px, 30vh));
+    transform: translateX(12.5vw);
+    background-color: black;
+    color: white;
+    z-index: 10000;
+}
+
+.copyLogs button:disabled {
+    opacity: 0.5;
+}
