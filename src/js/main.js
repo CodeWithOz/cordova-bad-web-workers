@@ -2,7 +2,6 @@
 // import { BackdropModule } from 'cupertino-pane/dist/modules';
 import CupertinoPane from './cupertino-debug.min';
 import { thirdModFunc1, thirdModFunc2 } from './third-mod';
-import { thirdModFunc1, thirdModFunc2 } from './third-mod';
 import { state } from './first-mod';
 
 export function initAppBeforeDeviceReady() {
