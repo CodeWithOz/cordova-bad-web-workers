@@ -15,5 +15,3 @@ rsync -a --prune-empty-dirs --include '*/' --exclude '*.js' src/js/ www/js
 # install androidx adapter plugins to workaround build failures
 cordova plugin add cordova-plugin-androidx --save
 cordova plugin add cordova-plugin-androidx-adapter --save
-# install splashscreen plugin
-cordova plugin add cordova-plugin-splashscreen@6.0.1 --save
