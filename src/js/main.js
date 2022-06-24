@@ -1,6 +1,7 @@
-import { CupertinoPane } from 'cupertino-pane/dist/core';
-import { BackdropModule } from 'cupertino-pane/dist/modules';
-import { secondModFunc1, secondModFunc2 } from './second-mod';
+// import { CupertinoPane } from 'cupertino-pane/dist/core';
+// import { BackdropModule } from 'cupertino-pane/dist/modules';
+import CupertinoPane from './cupertino-debug.min';
+import { thirdModFunc1, thirdModFunc2 } from './third-mod';
 import { thirdModFunc1, thirdModFunc2 } from './third-mod';
 import { state } from './first-mod';
 
@@ -46,7 +47,7 @@ export function initAppAfterDeviceReady() {
         });
     function initPane(
         config = {
-            modules: [BackdropModule],
+            // modules: [BackdropModule],
             breaks: {
                 top: {
                     enabled: true,
@@ -54,63 +55,63 @@ export function initAppAfterDeviceReady() {
                     height: window.innerHeight - 81,
                 },
             },
-            events: {
-                // onDrag() {
-                //     if (scrollTop > 0) {
-                //         myPane.disableDrag();
-                //     } else {
-                //         myPane.enableDrag();
-                //     }
+            // events: {
+            // onDrag() {
+            //     if (scrollTop > 0) {
+            //         myPane.disableDrag();
+            //     } else {
+            //         myPane.enableDrag();
+            //     }
 
-                //     if (
-                //         myPane.getPanelTransformY() >
-                //         window.innerHeight - topHeight
-                //     ) {
-                //         document
-                //             .querySelectorAll('.cupertino-pane .scroller')
-                //             .forEach(node => (node.style.overflowY = 'hidden'));
-                //     }
-                // },
-                onDidDismiss() {
-                    if (myPane) {
-                        myPane.destroy({ animate: true });
-                        myPane = null;
-                    }
-                    // document.querySelector('button.switch-tabs').removeEventListener('click', switchTabs);
-                    // document
-                    //     .querySelectorAll('.cupertino-pane .scroller')
-                    //     .forEach(node =>
-                    //         node.removeEventListener('scroll', toggleDrag)
-                    //     );
-                },
-                onDidPresent() {
-                    // document.querySelector('button.switch-tabs').addEventListener('click', switchTabs);
-                    // document
-                    //     .querySelectorAll('.cupertino-pane .scroller')
-                    //     .forEach(node =>
-                    //         node.addEventListener('scroll', toggleDrag)
-                    //     );
-                },
-                onTransitionEnd() {
-                    // if (myPane) {
-                    //     const currentBreakPoint = myPane.currentBreak();
-                    //     if (currentBreakPoint === 'top') {
-                    //         requestAnimationFrame(() =>
-                    //             document
-                    //                 .querySelectorAll('.cupertino-pane .scroller')
-                    //                 .forEach(
-                    //                     node => (node.style.overflowY = 'auto')
-                    //                 )
-                    //         );
-                    //     }
-                    //     const currentTransformY = myPane.getPanelTransformY();
-                    //     // update the highest transformY if necessary
-                    //     if (currentTransformY < highestTransformY) {
-                    //         highestTransformY = currentTransformY;
-                    //     }
-                    // }
-                },
+            //     if (
+            //         myPane.getPanelTransformY() >
+            //         window.innerHeight - topHeight
+            //     ) {
+            //         document
+            //             .querySelectorAll('.cupertino-pane .scroller')
+            //             .forEach(node => (node.style.overflowY = 'hidden'));
+            //     }
+            // },
+            onDidDismiss() {
+                if (myPane) {
+                    myPane.destroy({ animate: true });
+                    myPane = null;
+                }
+                // document.querySelector('button.switch-tabs').removeEventListener('click', switchTabs);
+                // document
+                //     .querySelectorAll('.cupertino-pane .scroller')
+                //     .forEach(node =>
+                //         node.removeEventListener('scroll', toggleDrag)
+                //     );
             },
+            onDidPresent() {
+                // document.querySelector('button.switch-tabs').addEventListener('click', switchTabs);
+                // document
+                //     .querySelectorAll('.cupertino-pane .scroller')
+                //     .forEach(node =>
+                //         node.addEventListener('scroll', toggleDrag)
+                //     );
+            },
+            onTransitionEnd() {
+                // if (myPane) {
+                //     const currentBreakPoint = myPane.currentBreak();
+                //     if (currentBreakPoint === 'top') {
+                //         requestAnimationFrame(() =>
+                //             document
+                //                 .querySelectorAll('.cupertino-pane .scroller')
+                //                 .forEach(
+                //                     node => (node.style.overflowY = 'auto')
+                //                 )
+                //         );
+                //     }
+                //     const currentTransformY = myPane.getPanelTransformY();
+                //     // update the highest transformY if necessary
+                //     if (currentTransformY < highestTransformY) {
+                //         highestTransformY = currentTransformY;
+                //     }
+                // }
+            },
+            // },
             // topperOverflow: false,
         },
         shouldPresent
