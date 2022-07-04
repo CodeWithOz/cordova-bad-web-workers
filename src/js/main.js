@@ -65,7 +65,7 @@ export function initAppAfterDeviceReady() {
     function initPane(
         config = {
             modules: [BackdropModule],
-            backdrop: true,
+            backdrop: false,
             bottomClose: true,
             fastSwipeClose: true,
             fastSwipeSensivity: 1,
