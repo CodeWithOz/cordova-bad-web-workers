@@ -48,7 +48,6 @@ export function initAppAfterDeviceReady() {
             error => alert(`error copying to clipboard: ${error}`)
         );
     });
-    /*
     document
         .querySelector('.third-bottom-sheet')
         .addEventListener('click', e => {
@@ -61,7 +60,6 @@ export function initAppAfterDeviceReady() {
                 });
             }
         });
-    */
     function initPane(
         config = {
             modules: [BackdropModule],
