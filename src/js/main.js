@@ -55,7 +55,8 @@ export function initAppAfterDeviceReady() {
                 myPane.setBreakpoints({
                     middle: {
                         enabled: true,
-                        height: 400,
+                        height:
+                            (window.innerHeight - 81) / (1.5 + Math.random()),
                     },
                 });
             }
