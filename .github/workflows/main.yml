@@ -92,7 +92,8 @@ jobs:
         echo initiating build
         npm run install-plugins
         npm run install-webview-4-2-1
-        cordova platform add android@10.1.2
+        # cordova platform add android@10.1.2
+        cordova platform add https://github.com/CodeWithOz/cordova-android#feature-debug-keyboard-event
         cordova build android
 
     # Upload APK
