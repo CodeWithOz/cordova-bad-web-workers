@@ -21,6 +21,6 @@
     },
     "dependencies": {
         "comlink": "^4.3.1",
-        "cupertino-pane": "github:roman-rr/cupertino-pane#2436337"
+        "cupertino-pane": "1.2.92"
     }
 }
