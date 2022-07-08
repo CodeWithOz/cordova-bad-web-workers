@@ -72,6 +72,12 @@ var app = {
                         height: topHeight,
                     },
                 },
+                cssClass: 'testing',
+                dragBy: [
+                    '.testing .pane',
+                    '.testing .backdrop',
+                    '.testing .draggable',
+                ],
                 onDrag() {
                     if (scrollTop > 0) {
                         myPane.disableDrag();

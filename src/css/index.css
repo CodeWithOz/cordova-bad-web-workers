@@ -119,22 +119,22 @@ h1 {
 }
 
 .cupertino-pane .scroller {
-    height: 70vh;
-    overflow-y: hidden;
+    /* height: 70vh;
+    overflow-y: hidden; */
 }
 
 .cupertino-pane-wrapper .content {
     background-color: aquamarine;
-    display: grid;
-    grid: 1fr / auto-flow 100%;
+    /* display: grid;
+    grid: 1fr / auto-flow 100%; */
     align-items: center;
     flex-wrap: nowrap;
     width: 100vw;
     padding: 0.5em 0;
-    overflow-x: auto;
+    /* overflow-x: auto;
     scroll-snap-type: x mandatory;
     overscroll-behavior: contain;
-    touch-action: pan-x;
+    touch-action: pan-x; */
     scroll-behavior: smooth;
 }
 
@@ -145,8 +145,8 @@ h1 {
     right: 0;
     opacity: 1;
     background: lightblue;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
+    /* scroll-snap-align: center;
+    scroll-snap-stop: always; */
 }
 
 .cupertino-pane-wrapper .scroller.second {
